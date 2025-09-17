@@ -51,3 +51,8 @@ exports.deleteUser = async(id_user)=>{
     const [rows] = await db.query('DELETE FROM users WHERE id_user = ?', [id_user])
     return rows;
 }
+
+exports.login = async(email)=>{
+    const [rows] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
+    return rows[0];
+}

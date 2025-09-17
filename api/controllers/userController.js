@@ -73,3 +73,27 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+exports.login = async (req, res) =>{
+    try {
+        const {email, password} = req.body
+
+        if(!email || !password){
+            return res.status(400).json({error: "Es necesario el email y la contraseña"})
+        }
+
+        const user = await Users.login(email)
+
+        if(!user){
+            return res.status(401).json({error: "Usuario no encontrado"})
+        }
+
+        if(user.password != password){
+            return res.status(401).json({error: "Contraseña incorrecta"})
+        }
+
+        res.json({message: "Login exitoso", user})
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
+}
