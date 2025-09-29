@@ -72,7 +72,7 @@ exports.changePsw = async (req, res) =>{
 
         const hashedPassword = await bcrypt.hash(newPassword, 10)
         const result = await Users.updateUserPassword(id, hashedPassword)
-        res.json
+        res.json({ok: true, message: "Constraseña actualizada"})
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
