@@ -1,4 +1,7 @@
 const Users = require("../models/userModel");
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+
 
 exports.createUser = async (req, res) => {
     try {
@@ -12,16 +15,18 @@ exports.createUser = async (req, res) => {
             return res.status(400).json({ error: "El tipo de usuario no es válido" });
         }
 
+        const saltRounds = 10
+        const hashedPassword  =await bcrypt.hash(password, saltRounds)
+
         const create = await Users.createUser(
             name,
             lastname,
             email,
             type,
-            password
+            hashedPassword
         );
 
-        // console.log(user)
-        res.json(create);
+        res.json({ok: true, user: create});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -30,8 +35,7 @@ exports.createUser = async (req, res) => {
 exports.getAllUsers = async (req, res) => {
     try {
         const user = await Users.getAll();
-        // console.log(user)
-        res.json(user);
+        res.json({ok: true, user: user});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -43,7 +47,7 @@ exports.updateUser = async (req, res) => {
         const datos = req.body;
         let { type } = req.body;
 
-        if(type != undefined && type != null){
+        if (type != undefined && type != null) {
             if (type === "user") {
                 type = 1;
             } else if (type === "admin") {
@@ -56,44 +60,61 @@ exports.updateUser = async (req, res) => {
         }
 
         const update = await Users.updateUser(id_user, datos);
-        // console.log(user)
-        res.json(update);
+        res.json({ok: true, user: update});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
+
+exports.changePsw = async (req, res) =>{
+    try {
+        const { id, newPassword } = req.body
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10)
+        const result = await Users.updateUserPassword(id, hashedPassword)
+        res.json
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
 
 exports.deleteUser = async (req, res) => {
     try {
         const id_user = req.params.id;
         const deleteUsr = await Users.deleteUser(id_user);
-        // console.log(user)
-        res.json(deleteUsr);
+        res.json({ok: true, user: deleteUsr});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
-exports.login = async (req, res) =>{
+exports.login = async (req, res) => {
     try {
-        const {email, password} = req.body
+        const { email, password } = req.body
 
-        if(!email || !password){
-            return res.status(400).json({error: "Es necesario el email y la contraseña"})
+        if (!email || !password) {
+            return res.status(400).json({ error: "Es necesario el email y la contraseña" })
         }
 
         const user = await Users.login(email)
 
-        if(!user){
-            return res.status(401).json({error: "Usuario no encontrado"})
+        if (!user) {
+            return res.status(401).json({ error: "Usuario no encontrado" })
         }
 
-        if(user.password != password){
-            return res.status(401).json({error: "Contraseña incorrecta"})
+        const valid = await bcrypt.compare(password, user.password) 
+        if (!valid) {
+            return res.status(401).json({ error: "Contraseña incorrecta" })
         }
 
-        res.json({message: "Login exitoso", user})
+        const token = jwt.sign(
+            {id: user.id_user, email: user.email, type: user.type},
+            process.env.JWT_SECRET,
+            { expiresIn: "1d"}
+        )
+
+        res.json({ message: "Login exitoso", token, user: {id: user.id_user, email: user.email, type: user.type}})
     } catch (error) {
-        res.status(500).json({error: error.message})
+        res.status(500).json({ error: error.message })
     }
 }
