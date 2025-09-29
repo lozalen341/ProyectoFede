@@ -12,6 +12,11 @@ exports.getAll = async () => {
     return rows;
 }
 
+exports.getById = async (id_user) => {
+    const [rows] = await db.query("SELECT * FROM users WHERE id_user = ?", [id_user]);
+    return rows;
+};
+
 exports.updateUser = async (id, datos) => {
     const campos = []
     const params = []
@@ -44,6 +49,11 @@ exports.updateUser = async (id, datos) => {
     params.push(id)
 
     const [rows] = await db.query(sql, params);
+    return rows;
+}
+
+exports.changePsw = async (id, password) => {
+    const [rows] = await db.query('UPDATE users SET password = ? WHERE id_user = ?', [password, id]);
     return rows;
 }
 

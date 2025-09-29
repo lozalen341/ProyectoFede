@@ -16,7 +16,7 @@ exports.createUser = async (req, res) => {
         }
 
         const saltRounds = 10
-        const hashedPassword  =await bcrypt.hash(password, saltRounds)
+        const hashedPassword  = await bcrypt.hash(password, saltRounds)
 
         const create = await Users.createUser(
             name,
@@ -40,6 +40,16 @@ exports.getAllUsers = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+exports.getById = async (req, res) =>{
+    try {
+        const id_user = req.params.id
+        const user = await Users.getById(id_user);
+        res.json({ok: true, user: user})
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
 
 exports.updateUser = async (req, res) => {
     try {
@@ -66,17 +76,30 @@ exports.updateUser = async (req, res) => {
     }
 };
 
-exports.changePsw = async (req, res) =>{
+exports.changePsw = async (req, res) => {
     try {
-        const { id, newPassword } = req.body
+        const { currentPassword, newPassword } = req.body;
+        const id = req.params.id;
 
-        const hashedPassword = await bcrypt.hash(newPassword, 10)
-        const result = await Users.updateUserPassword(id, hashedPassword)
-        res.json({ok: true, message: "Constraseña actualizada"})
+        const user = await Users.getById(id);
+
+        if (!user) {
+            return res.status(404).json({ error: "Usuario no encontrado" });
+        }
+
+        const valid = await bcrypt.compare(currentPassword, user[0].password);
+        if (!valid) {
+            return res.status(401).json({ error: "La contraseña actual es incorrecta" });
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        await Users.changePsw(id, hashedPassword);
+
+        res.json({ ok: true, message: "Contraseña actualizada" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-}
+};
 
 exports.deleteUser = async (req, res) => {
     try {
