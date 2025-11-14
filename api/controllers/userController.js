@@ -1,12 +1,27 @@
 const Users = require("../models/userModel");
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
-
+/**
+ * Crea un nuevo usuario en el sistema
+ * @async
+ * @function createUser
+ * @param {Object} req - Objeto de solicitud de Express
+ * @param {Object} req.body - Cuerpo de la solicitud
+ * @param {string} req.body.name - Nombre del usuario
+ * @param {string} req.body.lastname - Apellido del usuario
+ * @param {string} req.body.email - Email del usuario
+ * @param {string} req.body.type - Tipo de usuario ('user' o 'admin')
+ * @param {string} req.body.password - Contraseña del usuario
+ * @param {Object} res - Objeto de respuesta de Express
+ * @returns {Promise<void>} Respuesta JSON con el usuario creado o error
+ * @throws {Error} Si el tipo de usuario no es válido o hay un error en la base de datos
+ */
 exports.createUser = async (req, res) => {
     try {
         let { name, lastname, email, type, password } = req.body;
 
+        // Convertir el tipo de usuario a formato numérico
         if (type === "user") {
             type = 1;
         } else if (type === "admin") {
@@ -15,9 +30,11 @@ exports.createUser = async (req, res) => {
             return res.status(400).json({ error: "El tipo de usuario no es válido" });
         }
 
-        const saltRounds = 10
-        const hashedPassword  = await bcrypt.hash(password, saltRounds)
+        // Encriptar la contraseña
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
 
+        // Crear usuario en la base de datos
         const create = await Users.createUser(
             name,
             lastname,
@@ -26,37 +43,74 @@ exports.createUser = async (req, res) => {
             hashedPassword
         );
 
-        res.json({ok: true, user: create});
+        res.json({ ok: true, user: create });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
+/**
+ * Obtiene todos los usuarios del sistema
+ * @async
+ * @function getAllUsers
+ * @param {Object} req - Objeto de solicitud de Express
+ * @param {Object} res - Objeto de respuesta de Express
+ * @returns {Promise<void>} Respuesta JSON con la lista de usuarios o error
+ * @throws {Error} Si hay un error al consultar la base de datos
+ */
 exports.getAllUsers = async (req, res) => {
     try {
         const user = await Users.getAll();
-        res.json({ok: true, user: user});
+        res.json({ ok: true, user: user });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
-exports.getById = async (req, res) =>{
+/**
+ * Obtiene un usuario específico por su ID
+ * @async
+ * @function getById
+ * @param {Object} req - Objeto de solicitud de Express
+ * @param {Object} req.params - Parámetros de la URL
+ * @param {string} req.params.id - ID del usuario a buscar
+ * @param {Object} res - Objeto de respuesta de Express
+ * @returns {Promise<void>} Respuesta JSON con el usuario encontrado o error
+ * @throws {Error} Si hay un error al consultar la base de datos
+ */
+exports.getById = async (req, res) => {
     try {
-        const id_user = req.params.id
+        const id_user = req.params.id;
         const user = await Users.getById(id_user);
-        res.json({ok: true, user: user})
+        res.json({ ok: true, user: user });
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        res.status(500).json({ error: error.message });
     }
-}
+};
 
+/**
+ * Actualiza los datos de un usuario existente
+ * @async
+ * @function updateUser
+ * @param {Object} req - Objeto de solicitud de Express
+ * @param {Object} req.params - Parámetros de la URL
+ * @param {string} req.params.id - ID del usuario a actualizar
+ * @param {Object} req.body - Datos a actualizar
+ * @param {string} [req.body.name] - Nuevo nombre del usuario
+ * @param {string} [req.body.lastname] - Nuevo apellido del usuario
+ * @param {string} [req.body.email] - Nuevo email del usuario
+ * @param {string} [req.body.type] - Nuevo tipo de usuario ('user' o 'admin')
+ * @param {Object} res - Objeto de respuesta de Express
+ * @returns {Promise<void>} Respuesta JSON con el usuario actualizado o error
+ * @throws {Error} Si el tipo de usuario no es válido o hay un error en la base de datos
+ */
 exports.updateUser = async (req, res) => {
     try {
         const id_user = req.params.id;
         const datos = req.body;
         let { type } = req.body;
 
+        // Convertir el tipo de usuario si está presente
         if (type != undefined && type != null) {
             if (type === "user") {
                 type = 1;
@@ -70,28 +124,45 @@ exports.updateUser = async (req, res) => {
         }
 
         const update = await Users.updateUser(id_user, datos);
-        res.json({ok: true, user: update});
+        res.json({ ok: true, user: update });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
+/**
+ * Cambia la contraseña de un usuario
+ * @async
+ * @function changePsw
+ * @param {Object} req - Objeto de solicitud de Express
+ * @param {Object} req.params - Parámetros de la URL
+ * @param {string} req.params.id - ID del usuario
+ * @param {Object} req.body - Cuerpo de la solicitud
+ * @param {string} req.body.currentPassword - Contraseña actual del usuario
+ * @param {string} req.body.newPassword - Nueva contraseña del usuario
+ * @param {Object} res - Objeto de respuesta de Express
+ * @returns {Promise<void>} Respuesta JSON confirmando el cambio o error
+ * @throws {Error} Si la contraseña actual es incorrecta o el usuario no existe
+ */
 exports.changePsw = async (req, res) => {
     try {
         const { currentPassword, newPassword } = req.body;
         const id = req.params.id;
 
+        // Verificar que el usuario existe
         const user = await Users.getById(id);
 
         if (!user) {
             return res.status(404).json({ error: "Usuario no encontrado" });
         }
 
+        // Verificar que la contraseña actual es correcta
         const valid = await bcrypt.compare(currentPassword, user[0].password);
         if (!valid) {
             return res.status(401).json({ error: "La contraseña actual es incorrecta" });
         }
 
+        // Encriptar la nueva contraseña
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         await Users.changePsw(id, hashedPassword);
 
@@ -101,43 +172,74 @@ exports.changePsw = async (req, res) => {
     }
 };
 
+/**
+ * Elimina un usuario del sistema
+ * @async
+ * @function deleteUser
+ * @param {Object} req - Objeto de solicitud de Express
+ * @param {Object} req.params - Parámetros de la URL
+ * @param {string} req.params.id - ID del usuario a eliminar
+ * @param {Object} res - Objeto de respuesta de Express
+ * @returns {Promise<void>} Respuesta JSON confirmando la eliminación o error
+ * @throws {Error} Si hay un error al eliminar de la base de datos
+ */
 exports.deleteUser = async (req, res) => {
     try {
         const id_user = req.params.id;
         const deleteUsr = await Users.deleteUser(id_user);
-        res.json({ok: true, user: deleteUsr});
+        res.json({ ok: true, user: deleteUsr });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
+/**
+ * Autentica a un usuario y genera un token JWT
+ * @async
+ * @function login
+ * @param {Object} req - Objeto de solicitud de Express
+ * @param {Object} req.body - Cuerpo de la solicitud
+ * @param {string} req.body.email - Email del usuario
+ * @param {string} req.body.password - Contraseña del usuario
+ * @param {Object} res - Objeto de respuesta de Express
+ * @returns {Promise<void>} Respuesta JSON con token JWT y datos del usuario o error
+ * @throws {Error} Si las credenciales son incorrectas o faltan datos
+ */
 exports.login = async (req, res) => {
     try {
-        const { email, password } = req.body
+        const { email, password } = req.body;
 
+        // Validar que se enviaron email y contraseña
         if (!email || !password) {
-            return res.status(400).json({ error: "Es necesario el email y la contraseña" })
+            return res.status(400).json({ error: "Es necesario el email y la contraseña" });
         }
 
-        const user = await Users.login(email)
+        // Buscar usuario por email
+        const user = await Users.login(email);
 
         if (!user) {
-            return res.status(401).json({ error: "Usuario no encontrado" })
+            return res.status(401).json({ error: "Usuario no encontrado" });
         }
 
-        const valid = await bcrypt.compare(password, user.password) 
+        // Verificar contraseña
+        const valid = await bcrypt.compare(password, user.password);
         if (!valid) {
-            return res.status(401).json({ error: "Contraseña incorrecta" })
+            return res.status(401).json({ error: "Contraseña incorrecta" });
         }
 
+        // Generar token JWT
         const token = jwt.sign(
-            {id: user.id_user, email: user.email, type: user.type},
+            { id: user.id_user, email: user.email, type: user.type },
             process.env.JWT_SECRET,
-            { expiresIn: "1d"}
-        )
+            { expiresIn: "1d" }
+        );
 
-        res.json({ message: "Login exitoso", token, user: {id: user.id_user, email: user.email, type: user.type}})
+        res.json({ 
+            message: "Login exitoso", 
+            token, 
+            user: { id: user.id_user, email: user.email, type: user.type }
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        res.status(500).json({ error: error.message });
     }
-}
+};
