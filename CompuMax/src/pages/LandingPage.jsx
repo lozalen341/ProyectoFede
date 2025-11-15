@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../assets/css/LandingStyle.css";
-import Card from "../components/Card";
+import { Link } from "react-router-dom";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -24,9 +24,9 @@ function App() {
               <a href="#contacto">Contacto</a>
             </li>
           </ul>
-          <a href="#" className="cta-button">
+          <Link to="/login" className="cta-button">
             Iniciar Sesión
-          </a>
+          </Link>
         </nav>
       </header>
 
