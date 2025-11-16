@@ -1,52 +1,50 @@
 import { useState } from "react";
-import "../assets/css/registerStyle.css";
+import styles from "../assets/css/Register.module.css";
 import { Link } from "react-router-dom";
 
-function App() {
-    const [count, setCount] = useState(0);
-
+function Register() {
     return (
-        <>
-            <div className="auth-container">
+        <div style={{
+            background: 'linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%)',
+            minHeight: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '2rem'
+        }}>
+            <div className={styles.authContainer}>
                 {/* Panel Izquierdo */}
-                <div className="auth-brand">
-                    <h1>CompuMax</h1>
+                <div className={styles.authBrand}>
+                    <div className={styles.logo}>
+                        <img src="/CompuMax-blanco.png" alt="CompuMax-logo" />
+                    </div>
                     <p>Servicio técnico profesional con sistema de turnos online</p>
 
-                    <div className="brand-features">
-                        <div className="brand-feature">
-                            <div className="feature-check">
-                                <img
-                                    src="/src/assets/img/icons/features-icon-tick.svg"
-                                    alt="tick"
-                                />
+                    <div className={styles.brandFeatures}>
+                        <div className={styles.brandFeature}>
+                            <div className={styles.featureCheck}>
+                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
                             </div>
                             <span>Técnicos certificados</span>
                         </div>
-                        <div className="brand-feature">
-                            <div className="feature-check">
-                                <img
-                                    src="/src/assets/img/icons/features-icon-tick.svg"
-                                    alt="tick"
-                                />
+
+                        <div className={styles.brandFeature}>
+                            <div className={styles.featureCheck}>
+                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
                             </div>
                             <span>Turnos sin espera</span>
                         </div>
-                        <div className="brand-feature">
-                            <div className="feature-check">
-                                <img
-                                    src="/src/assets/img/icons/features-icon-tick.svg"
-                                    alt="tick"
-                                />
+
+                        <div className={styles.brandFeature}>
+                            <div className={styles.featureCheck}>
+                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
                             </div>
                             <span>Seguimiento en tiempo real</span>
                         </div>
-                        <div className="brand-feature">
-                            <div className="feature-check">
-                                <img
-                                    src="/src/assets/img/icons/features-icon-tick.svg"
-                                    alt="tick"
-                                />
+
+                        <div className={styles.brandFeature}>
+                            <div className={styles.featureCheck}>
+                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
                             </div>
                             <span>Garantía incluida</span>
                         </div>
@@ -54,85 +52,78 @@ function App() {
                 </div>
 
                 {/* Panel Derecho */}
-                <div className="auth-form">
-                    <h2 className="form-title">Crear cuenta</h2>
-                    <p className="form-subtitle">Completa tus datos para comenzar</p>
+                <div className={styles.authForm}>
+                    <h2 className={styles.formTitle}>Crear cuenta</h2>
+                    <p className={styles.formSubtitle}>Completa tus datos para comenzar</p>
 
                     <form>
-                        <div className="form-row">
-                            <div className="form-group">
-                                <label className="form-label" htmlFor="name">
+                        <div className={styles.formRow}>
+                            <div className={styles.formGroup}>
+                                <label className={styles.formLabel} htmlFor="name">
                                     Nombre
                                 </label>
                                 <input
                                     type="text"
                                     id="name"
-                                    className="form-input"
+                                    className={styles.formInput}
                                     placeholder="Juan"
                                     required
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label className="form-label" htmlFor="lastname">
+                            <div className={styles.formGroup}>
+                                <label className={styles.formLabel} htmlFor="lastname">
                                     Apellido
                                 </label>
                                 <input
                                     type="text"
                                     id="lastname"
-                                    className="form-input"
+                                    className={styles.formInput}
                                     placeholder="Pérez"
                                     required
                                 />
                             </div>
                         </div>
 
-                        <div className="form-group">
-                            <label className="form-label" htmlFor="email">
+                        <div className={styles.formGroup}>
+                            <label className={styles.formLabel} htmlFor="email">
                                 Correo electrónico
                             </label>
                             <input
                                 type="email"
                                 id="email"
-                                className="form-input"
+                                className={styles.formInput}
                                 placeholder="tu@email.com"
                                 required
                             />
                         </div>
 
-                        <div className="form-group">
-                            <label className="form-label" htmlFor="password">
+                        <div className={styles.formGroup}>
+                            <label className={styles.formLabel} htmlFor="password">
                                 Contraseña
                             </label>
                             <input
                                 type="password"
                                 id="password"
-                                className="form-input"
+                                className={styles.formInput}
                                 placeholder="••••••••"
                                 required
                             />
-                            <p className="form-helper">Mínimo 8 caracteres</p>
-                        </div>
-
-                        <div className="form-check">
-                            <input type="checkbox" id="terms" required />
-                            <label htmlFor="terms">
-                                Acepto los <a href="#">términos y condiciones</a>
-                            </label>
+                            <p className={styles.formHelper}>Mínimo 8 caracteres</p>
                         </div>
 
                         <button type="submit" className="btn-primary">
                             Crear Cuenta
                         </button>
 
-                        <div className="form-footer">
+                        <div className={styles.formFooter}>
                             ¿Ya tienes cuenta? <Link to="/login">Inicia sesión aquí</Link>
                         </div>
                     </form>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
-export default App;
+export default Register;

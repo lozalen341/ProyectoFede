@@ -1,18 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--text-primary);
-  background-color: var(--bg-light);
-  line-height: 1.6;
-}
+/* Landing.module.css */
 
 /* Header */
-header {
+.header {
   background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
   color: white;
   padding: 1.5rem 0;
@@ -22,25 +11,7 @@ header {
   z-index: 1000;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo img {
-  height: 75px; /* Ajusta según necesites */
-  width: auto; /* Mantiene la proporción original */
-  object-fit: contain;
-}
-
-/* Si querés un tamaño diferente en mobile */
-@media (max-width: 768px) {
-  .logo img {
-    height: 75px;
-  }
-}
-
-nav {
+.nav {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -50,29 +21,34 @@ nav {
 }
 
 .logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
 }
 
-.nav-links {
+.logo img {
+  height: 75px;
+  width: auto;
+  object-fit: contain;
+}
+
+.navLinks {
   display: flex;
   gap: 2.5rem;
   list-style: none;
 }
 
-.nav-links a {
+.navLinks a {
   color: white;
   text-decoration: none;
   font-weight: 500;
   transition: opacity 0.3s;
 }
 
-.nav-links a:hover {
+.navLinks a:hover {
   opacity: 0.8;
 }
 
-.cta-button {
+.ctaButton {
   background-color: var(--accent);
   color: white;
   padding: 0.75rem 1.75rem;
@@ -82,13 +58,13 @@ nav {
   transition: all 0.3s ease;
 }
 
-.cta-button:hover {
+.ctaButton:hover {
   background-color: var(--accent-dark);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }
 
-/* Hero Section */
+/* Hero */
 .hero {
   background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
   color: white;
@@ -96,7 +72,7 @@ nav {
   text-align: center;
 }
 
-.hero-content {
+.heroContent {
   max-width: 900px;
   margin: 0 auto;
 }
@@ -114,14 +90,14 @@ nav {
   opacity: 0.95;
 }
 
-.hero-buttons {
+.heroButtons {
   display: flex;
   gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.btn-primary {
+.btnPrimary {
   background-color: var(--accent);
   color: white;
   padding: 1rem 2.5rem;
@@ -134,13 +110,13 @@ nav {
   cursor: pointer;
 }
 
-.btn-primary:hover {
+.btnPrimary:hover {
   background-color: var(--accent-dark);
   transform: translateY(-3px);
   box-shadow: var(--shadow-lg);
 }
 
-.btn-secondary {
+.btnSecondary {
   background-color: transparent;
   color: white;
   padding: 1rem 2.5rem;
@@ -152,12 +128,12 @@ nav {
   transition: all 0.3s ease;
 }
 
-.btn-secondary:hover {
+.btnSecondary:hover {
   background-color: white;
   color: var(--primary);
 }
 
-/* Services Section */
+/* Services */
 .services {
   padding: 5rem 2rem;
   background-color: var(--bg-white);
@@ -168,7 +144,7 @@ nav {
   margin: 0 auto;
 }
 
-.section-title {
+.sectionTitle {
   text-align: center;
   font-size: 2.5rem;
   color: var(--primary-dark);
@@ -176,21 +152,21 @@ nav {
   font-weight: 700;
 }
 
-.section-subtitle {
+.sectionSubtitle {
   text-align: center;
   font-size: 1.2rem;
   color: var(--text-secondary);
   margin-bottom: 4rem;
 }
 
-.services-grid {
+.servicesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
 }
 
-.service-card {
-  background: var(--bg-card);
+.serviceCard {
+  background: var(--bg-white);
   padding: 2.5rem;
   border-radius: 12px;
   box-shadow: var(--shadow-md);
@@ -199,13 +175,13 @@ nav {
   border: 1px solid var(--gray-200);
 }
 
-.service-card:hover {
+.serviceCard:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
   border-color: var(--accent-light);
 }
 
-.service-icon {
+.serviceIcon {
   width: 70px;
   height: 70px;
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -217,65 +193,43 @@ nav {
   font-size: 2rem;
 }
 
-/* SVG en Service Cards */
-.service-icon img {
+.serviceIcon img {
   width: 35px;
   height: 35px;
-  filter: brightness(0) invert(1); /* Convierte el SVG a blanco */
+  filter: brightness(0) invert(1);
 }
 
-/* SVG en Feature Icons */
-.feature-icon img {
-  width: 28px;
-  height: 28px;
-  filter: brightness(0) invert(1); /* Convierte el SVG a blanco */
-}
-
-/* SVG en Step Numbers (si usás íconos en vez de números) */
-.step-number img {
-  width: 30px;
-  height: 30px;
-  filter: brightness(0) invert(1); /* Convierte el SVG a blanco */
-}
-
-/* Alternativa: Si tus SVG ya vienen con color específico */
-.service-icon img,
-.feature-icon img,
-.step-number img {
-  object-fit: contain;
-}
-
-.service-card h3 {
+.serviceCard h3 {
   color: var(--primary-dark);
   margin-bottom: 1rem;
   font-size: 1.4rem;
 }
 
-.service-card p {
+.serviceCard p {
   color: var(--text-secondary);
   line-height: 1.7;
 }
 
-/* Features Section */
+/* Features */
 .features {
   padding: 5rem 2rem;
   background-color: var(--bg-light);
 }
 
-.features-grid {
+.featuresGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
 }
 
-.feature-item {
+.featureItem {
   display: flex;
   align-items: flex-start;
   gap: 1.5rem;
 }
 
-.feature-icon {
+.featureIcon {
   width: 50px;
   height: 50px;
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
@@ -287,19 +241,25 @@ nav {
   flex-shrink: 0;
 }
 
-.feature-content h4 {
+.featureIcon img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+}
+
+.featureContent h4 {
   color: var(--primary-dark);
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
 }
 
-.feature-content p {
+.featureContent p {
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
-/* How It Works */
-.how-it-works {
+/* How it works */
+.howItWorks {
   padding: 5rem 2rem;
   background-color: var(--bg-white);
 }
@@ -313,10 +273,9 @@ nav {
 
 .step {
   text-align: center;
-  position: relative;
 }
 
-.step-number {
+.stepNumber {
   width: 60px;
   height: 60px;
   background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
@@ -341,33 +300,33 @@ nav {
   line-height: 1.6;
 }
 
-/* CTA Section */
-.cta-section {
+/* CTA */
+.ctaSection {
   background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
   color: white;
   padding: 5rem 2rem;
   text-align: center;
 }
 
-.cta-section h2 {
+.ctaSection h2 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
 }
 
-.cta-section p {
+.ctaSection p {
   font-size: 1.2rem;
   margin-bottom: 2.5rem;
   opacity: 0.95;
 }
 
 /* Footer */
-footer {
+.footer {
   background-color: var(--gray-900);
   color: white;
   padding: 3rem 2rem 1.5rem;
 }
 
-.footer-content {
+.footerContent {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
@@ -376,30 +335,24 @@ footer {
   margin-bottom: 2rem;
 }
 
-.footer-section h3 {
+.footerSection h3 {
   margin-bottom: 1.5rem;
   color: var(--accent-light);
 }
 
-.footer-section p,
-.footer-section a {
+.footerSection p,
+.footerSection a {
   color: var(--gray-300);
   text-decoration: none;
   display: block;
   margin-bottom: 0.75rem;
 }
 
-.footer-section a:hover {
+.footerSection a:hover {
   color: var(--accent-light);
 }
 
-.footer-bottom {
-  text-align: center;
-  padding-top: 2rem;
-  border-top: 1px solid var(--gray-700);
-  color: var(--gray-300);
-}
-.footer-item {
+.footerItem {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -407,12 +360,18 @@ footer {
   font-size: 0.95rem;
 }
 
-.footer-icon {
+.footerIcon {
   width: 18px;
   height: 18px;
   object-fit: contain;
 }
 
+.footerBottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--gray-700);
+  color: var(--gray-300);
+}
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -424,21 +383,21 @@ footer {
     font-size: 1.1rem;
   }
 
-  .nav-links {
+  .navLinks {
     display: none;
   }
 
-  .section-title {
+  .sectionTitle {
     font-size: 2rem;
   }
 
-  .hero-buttons {
+  .heroButtons {
     flex-direction: column;
     align-items: center;
   }
 
-  .btn-primary,
-  .btn-secondary {
+  .btnPrimary,
+  .btnSecondary {
     width: 100%;
     max-width: 300px;
   }
