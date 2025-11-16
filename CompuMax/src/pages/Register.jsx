@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styles from "../assets/css/Register.module.css";
 import { Link } from "react-router-dom";
+import AuthBrand from '../components/AuthBrand'
+
 
 function Register() {
     return (
@@ -14,44 +16,6 @@ function Register() {
         }}>
             <div className={styles.authContainer}>
                 {/* Panel Izquierdo */}
-                <div className={styles.authBrand}>
-                    <div className={styles.logo}>
-                        <img src="/CompuMax-blanco.png" alt="CompuMax-logo" />
-                    </div>
-                    <p>Servicio técnico profesional con sistema de turnos online</p>
-
-                    <div className={styles.brandFeatures}>
-                        <div className={styles.brandFeature}>
-                            <div className={styles.featureCheck}>
-                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
-                            </div>
-                            <span>Técnicos certificados</span>
-                        </div>
-
-                        <div className={styles.brandFeature}>
-                            <div className={styles.featureCheck}>
-                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
-                            </div>
-                            <span>Turnos sin espera</span>
-                        </div>
-
-                        <div className={styles.brandFeature}>
-                            <div className={styles.featureCheck}>
-                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
-                            </div>
-                            <span>Seguimiento en tiempo real</span>
-                        </div>
-
-                        <div className={styles.brandFeature}>
-                            <div className={styles.featureCheck}>
-                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
-                            </div>
-                            <span>Garantía incluida</span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Panel Derecho */}
                 <div className={styles.authForm}>
                     <h2 className={styles.formTitle}>Crear cuenta</h2>
                     <p className={styles.formSubtitle}>Completa tus datos para comenzar</p>
@@ -121,6 +85,8 @@ function Register() {
                         </div>
                     </form>
                 </div>
+                {/* Panel Derecho */}
+                <AuthBrand side="right"/>
             </div>
         </div>
     );
