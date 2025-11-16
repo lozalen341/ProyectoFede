@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../assets/css/Login.module.css";
 import { Link } from "react-router-dom";
+import AuthBrand from '../components/AuthBrand'
 
 function Login() {
     return (
@@ -14,42 +15,7 @@ function Login() {
         }}>
             <div className={styles.authContainer}>
                 {/* Panel izquierdo */}
-                <div className={styles.authBrand}>
-                    <div className={styles.logo}>
-                        <img src="/CompuMax-blanco.png" alt="CompuMax-logo" />
-                    </div>
-                    <p>Servicio técnico profesional con sistema de turnos online</p>
-
-                    <div className={styles.brandFeatures}>
-                        <div className={styles.brandFeature}>
-                            <div className={styles.featureCheck}>
-                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
-                            </div>
-                            <span>Técnicos certificados</span>
-                        </div>
-
-                        <div className={styles.brandFeature}>
-                            <div className={styles.featureCheck}>
-                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
-                            </div>
-                            <span>Turnos sin espera</span>
-                        </div>
-
-                        <div className={styles.brandFeature}>
-                            <div className={styles.featureCheck}>
-                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
-                            </div>
-                            <span>Seguimiento en tiempo real</span>
-                        </div>
-
-                        <div className={styles.brandFeature}>
-                            <div className={styles.featureCheck}>
-                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
-                            </div>
-                            <span>Garantía incluida</span>
-                        </div>
-                    </div>
-                </div>
+                <AuthBrand side="left"/>
 
                 {/* Panel derecho */}
                 <div className={styles.authForm}>
