@@ -1,87 +1,85 @@
 import { useState } from "react";
-import "../assets/css/loginStyle.css";
+import styles from "../assets/css/Login.module.css";
 import { Link } from "react-router-dom";
 
-function App() {
-    const [count, setCount] = useState(0);
-
+function Login() {
     return (
-        <>
-            <div className="auth-container">
-                {/* Panel Izquierdo */}
-                <div className="auth-brand">
-                    <h1>CompuMax</h1>
+        <div style={{
+            background: 'linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%)',
+            minHeight: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '2rem'
+        }}>
+            <div className={styles.authContainer}>
+                {/* Panel izquierdo */}
+                <div className={styles.authBrand}>
+                    <div className={styles.logo}>
+                        <img src="/CompuMax-blanco.png" alt="CompuMax-logo" />
+                    </div>
                     <p>Servicio técnico profesional con sistema de turnos online</p>
 
-                    <div className="brand-features">
-                        <div className="brand-feature">
-                            <div className="feature-check">
-                                <img
-                                    src="/src/assets/img/icons/features-icon-tick.svg"
-                                    alt="tick"
-                                />
+                    <div className={styles.brandFeatures}>
+                        <div className={styles.brandFeature}>
+                            <div className={styles.featureCheck}>
+                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
                             </div>
                             <span>Técnicos certificados</span>
                         </div>
-                        <div className="brand-feature">
-                            <div className="feature-check">
-                                <img
-                                    src="/src/assets/img/icons/features-icon-tick.svg"
-                                    alt="tick"
-                                />
+
+                        <div className={styles.brandFeature}>
+                            <div className={styles.featureCheck}>
+                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
                             </div>
                             <span>Turnos sin espera</span>
                         </div>
-                        <div className="brand-feature">
-                            <div className="feature-check">
-                                <img
-                                    src="/src/assets/img/icons/features-icon-tick.svg"
-                                    alt="tick"
-                                />
+
+                        <div className={styles.brandFeature}>
+                            <div className={styles.featureCheck}>
+                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
                             </div>
                             <span>Seguimiento en tiempo real</span>
                         </div>
-                        <div className="brand-feature">
-                            <div className="feature-check">
-                                <img
-                                    src="/src/assets/img/icons/features-icon-tick.svg"
-                                    alt="tick"
-                                />
+
+                        <div className={styles.brandFeature}>
+                            <div className={styles.featureCheck}>
+                                <img src="/src/assets/img/icons/features-icon-tick.svg" alt="tick" />
                             </div>
                             <span>Garantía incluida</span>
                         </div>
                     </div>
                 </div>
 
-                {/* Panel Derecho */}
-                <div className="auth-form">
-                    <h2 className="form-title">Bienvenido de vuelta</h2>
-                    <p className="form-subtitle">
+                {/* Panel derecho */}
+                <div className={styles.authForm}>
+                    <h2 className={styles.formTitle}>Bienvenido de vuelta</h2>
+                    <p className={styles.formSubtitle}>
                         Ingresa tus datos para acceder a tu cuenta
                     </p>
 
                     <form>
-                        <div className="form-group">
-                            <label className="form-label" htmlFor="email">
+                        <div className={styles.formGroup}>
+                            <label className={styles.formLabel} htmlFor="email">
                                 Correo electrónico
                             </label>
                             <input
                                 type="email"
                                 id="email"
-                                className="form-input"
+                                className={styles.formInput}
                                 placeholder="tu@email.com"
                                 required
                             />
                         </div>
 
-                        <div className="form-group">
-                            <label className="form-label" htmlFor="password">
+                        <div className={styles.formGroup}>
+                            <label className={styles.formLabel} htmlFor="password">
                                 Contraseña
                             </label>
                             <input
                                 type="password"
                                 id="password"
-                                className="form-input"
+                                className={styles.formInput}
                                 placeholder="••••••••"
                                 required
                             />
@@ -91,15 +89,14 @@ function App() {
                             Iniciar Sesión
                         </button>
 
-                        <div className="form-footer">
-                            ¿No tienes cuenta?{" "}
-                            <Link to="/register">Regístrate aquí</Link>
+                        <div className={styles.formFooter}>
+                            ¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link>
                         </div>
                     </form>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
-export default App;
+export default Login;
