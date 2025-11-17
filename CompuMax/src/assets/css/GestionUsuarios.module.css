@@ -1,0 +1,270 @@
+/* GestionUsuarios.module.css */
+
+/* Layout Principal */
+.adminLayout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+    background-color: var(--bg-light);
+}
+
+/* Main Content */
+.mainContent {
+    padding: 2rem;
+    overflow-y: auto;
+    background-color: var(--bg-light);
+}
+
+/* ========== CONTENIDO GLOBAL CON :global() ========== */
+
+.mainContent :global(.content-header) {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.mainContent :global(.page-title) {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin: 0;
+}
+
+.mainContent :global(.header-actions) {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.mainContent :global(.search-box) {
+    position: relative;
+}
+
+.mainContent :global(.search-icon) {
+    position: absolute;
+    left: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.mainContent :global(.search-input) {
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    min-width: 300px;
+    transition: all 0.3s ease;
+}
+
+.mainContent :global(.search-input:focus) {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(74, 155, 142, 0.1);
+}
+
+.mainContent :global(.btn-primary) {
+    background: var(--accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mainContent :global(.btn-primary:hover) {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Stats Grid */
+.mainContent :global(.stats-grid) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.mainContent :global(.stat-card) {
+    background: var(--bg-white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.mainContent :global(.stat-card:hover) {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.mainContent :global(.stat-icon) {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.mainContent :global(.stat-icon-total) {
+    background: rgba(74, 155, 142, 0.1);
+    color: var(--accent);
+}
+
+.mainContent :global(.stat-icon-active) {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--status-completed);
+}
+
+.mainContent :global(.stat-icon-new) {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--status-pending);
+}
+
+.mainContent :global(.stat-icon-pending) {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--status-process);
+}
+
+.mainContent :global(.stat-content h3) {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    font-weight: 700;
+    margin: 0;
+}
+
+.mainContent :global(.stat-content p) {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Filters Bar */
+.mainContent :global(.filters-bar) {
+    background: var(--bg-white);
+    padding: 1.25rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.mainContent :global(.filter-group) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+    min-width: 150px;
+}
+
+.mainContent :global(.filter-label) {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.mainContent :global(.filter-select) {
+    padding: 0.625rem 1rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    background: var(--bg-white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mainContent :global(.filter-select:focus) {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* Data Table - ajuste específico para tabla de usuarios */
+.mainContent :global(.data-table) {
+    min-width: 1000px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .adminLayout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .mainContent {
+        padding: 1rem;
+    }
+
+    .mainContent :global(.content-header) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mainContent :global(.header-actions) {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .mainContent :global(.search-box) {
+        width: 100%;
+    }
+
+    .mainContent :global(.search-input) {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .mainContent :global(.btn-primary) {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .mainContent :global(.stats-grid) {
+        grid-template-columns: 1fr;
+    }
+
+    .mainContent :global(.stat-card) {
+        padding: 1.25rem;
+    }
+
+    .mainContent :global(.page-title) {
+        font-size: 1.5rem;
+    }
+
+    .mainContent :global(.data-table) {
+        font-size: 0.85rem;
+        min-width: 900px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mainContent :global(.stat-content h3) {
+        font-size: 1.5rem;
+    }
+
+    .mainContent :global(.stat-icon) {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}

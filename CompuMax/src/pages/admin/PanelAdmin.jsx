@@ -2,12 +2,71 @@ import { useState } from "react";
 import styles from "../../assets/css/Panel.module.css";
 import SideBar from "../../components/SideBarAdmin";
 
+// Datos de ejemplo
+const turnosEjemplo = [
+    {
+        id: "#1523",
+        cliente: "Juan Pérez",
+        servicio: "Reparación de PC",
+        fecha: "15/11/2025",
+        hora: "10:00 AM",
+        estado: "Pendiente",
+        descripcion: "Problema con placa madre"
+    },
+    {
+        id: "#1522",
+        cliente: "María García",
+        servicio: "Mantenimiento",
+        fecha: "15/11/2025",
+        hora: "11:30 AM",
+        estado: "En Proceso",
+        descripcion: "Limpieza preventiva anual"
+    },
+    {
+        id: "#1521",
+        cliente: "Carlos Rodríguez",
+        servicio: "Dispositivos Móviles",
+        fecha: "14/11/2025",
+        hora: "02:00 PM",
+        estado: "Finalizado",
+        descripcion: "Cambio de pantalla"
+    },
+    {
+        id: "#1520",
+        cliente: "Ana Martínez",
+        servicio: "Recuperación de Datos",
+        fecha: "14/11/2025",
+        hora: "03:30 PM",
+        estado: "Pendiente",
+        descripcion: "Disco duro dañado"
+    },
+    {
+        id: "#1519",
+        cliente: "Luis Fernández",
+        servicio: "Reparación de PC",
+        fecha: "13/11/2025",
+        hora: "09:00 AM",
+        estado: "Finalizado",
+        descripcion: "Actualización de RAM"
+    }
+];
+
 function Panel() {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [filtroEstado, setFiltroEstado] = useState("Todos");
+    const [filtroServicio, setFiltroServicio] = useState("Todos los servicios");
+    const [filtroFecha, setFiltroFecha] = useState("Hoy");
+    const [busqueda, setBusqueda] = useState("");
+
     return (
         <>
             <div className={styles.adminLayout}>
+                {/* Mobile Header */}
                 <SideBar />
+
+                {/* Main Content */}
                 <main className={styles.mainContent}>
+                    {/* Header */}
                     <div className="content-header">
                         <h1 className="page-title">Gestión de Turnos</h1>
                         <div className="header-actions">
@@ -17,6 +76,8 @@ function Panel() {
                                     type="text"
                                     className="search-input"
                                     placeholder="Buscar por cliente, servicio..."
+                                    value={busqueda}
+                                    onChange={(e) => setBusqueda(e.target.value)}
                                 />
                             </div>
                             <button className="btn-primary">
@@ -26,6 +87,7 @@ function Panel() {
                         </div>
                     </div>
 
+                    {/* Stats Grid */}
                     <div className="stats-grid">
                         <div className="stat-card">
                             <div className="stat-icon pending">⏳</div>
@@ -60,10 +122,15 @@ function Panel() {
                         </div>
                     </div>
 
+                    {/* Filters Bar */}
                     <div className="filters-bar">
                         <div className="filter-group">
                             <label className="filter-label">Estado</label>
-                            <select className="filter-select">
+                            <select
+                                className="filter-select"
+                                value={filtroEstado}
+                                onChange={(e) => setFiltroEstado(e.target.value)}
+                            >
                                 <option>Todos</option>
                                 <option>Pendiente</option>
                                 <option>En Proceso</option>
@@ -74,7 +141,11 @@ function Panel() {
 
                         <div className="filter-group">
                             <label className="filter-label">Servicio</label>
-                            <select className="filter-select">
+                            <select
+                                className="filter-select"
+                                value={filtroServicio}
+                                onChange={(e) => setFiltroServicio(e.target.value)}
+                            >
                                 <option>Todos los servicios</option>
                                 <option>Reparación de PC</option>
                                 <option>Dispositivos Móviles</option>
@@ -85,7 +156,11 @@ function Panel() {
 
                         <div className="filter-group">
                             <label className="filter-label">Fecha</label>
-                            <select className="filter-select">
+                            <select
+                                className="filter-select"
+                                value={filtroFecha}
+                                onChange={(e) => setFiltroFecha(e.target.value)}
+                            >
                                 <option>Hoy</option>
                                 <option>Esta semana</option>
                                 <option>Este mes</option>
@@ -94,6 +169,7 @@ function Panel() {
                         </div>
                     </div>
 
+                    {/* Data Table */}
                     <div className="data-table-container">
                         <div className="table-header">
                             <h2 className="table-title">Lista de Turnos</h2>
@@ -113,85 +189,32 @@ function Panel() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>#1523</td>
-                                        <td>Juan Pérez</td>
-                                        <td>Reparación de PC</td>
-                                        <td>15/11/2025</td>
-                                        <td>10:00 AM</td>
-                                        <td><span className="status-badge pending">Pendiente</span></td>
-                                        <td>
-                                            <div className="action-buttons">
-                                                <button className="btn-action btn-view">Ver</button>
-                                                <button className="btn-action btn-edit">Editar</button>
-                                                <button className="btn-action btn-delete">Eliminar</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#1522</td>
-                                        <td>María García</td>
-                                        <td>Mantenimiento</td>
-                                        <td>15/11/2025</td>
-                                        <td>11:30 AM</td>
-                                        <td><span className="status-badge process">En Proceso</span></td>
-                                        <td>
-                                            <div className="action-buttons">
-                                                <button className="btn-action btn-view">Ver</button>
-                                                <button className="btn-action btn-edit">Editar</button>
-                                                <button className="btn-action btn-delete">Eliminar</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#1521</td>
-                                        <td>Carlos Rodríguez</td>
-                                        <td>Dispositivos Móviles</td>
-                                        <td>14/11/2025</td>
-                                        <td>02:00 PM</td>
-                                        <td><span className="status-badge completed">Finalizado</span></td>
-                                        <td>
-                                            <div className="action-buttons">
-                                                <button className="btn-action btn-view">Ver</button>
-                                                <button className="btn-action btn-edit">Editar</button>
-                                                <button className="btn-action btn-delete">Eliminar</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#1520</td>
-                                        <td>Ana Martínez</td>
-                                        <td>Recuperación de Datos</td>
-                                        <td>14/11/2025</td>
-                                        <td>03:30 PM</td>
-                                        <td><span className="status-badge pending">Pendiente</span></td>
-                                        <td>
-                                            <div className="action-buttons">
-                                                <button className="btn-action btn-view">Ver</button>
-                                                <button className="btn-action btn-edit">Editar</button>
-                                                <button className="btn-action btn-delete">Eliminar</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#1519</td>
-                                        <td>Luis Fernández</td>
-                                        <td>Reparación de PC</td>
-                                        <td>13/11/2025</td>
-                                        <td>09:00 AM</td>
-                                        <td><span className="status-badge completed">Finalizado</span></td>
-                                        <td>
-                                            <div className="action-buttons">
-                                                <button className="btn-action btn-view">Ver</button>
-                                                <button className="btn-action btn-edit">Editar</button>
-                                                <button className="btn-action btn-delete">Eliminar</button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    {turnosEjemplo.map((turno) => (
+                                        <tr key={turno.id}>
+                                            <td>{turno.id}</td>
+                                            <td>{turno.cliente}</td>
+                                            <td>{turno.servicio}</td>
+                                            <td>{turno.fecha}</td>
+                                            <td>{turno.hora}</td>
+                                            <td>
+                                                <span className={`status-badge ${turno.estado.toLowerCase().replace(' ', '-')}`}>
+                                                    {turno.estado}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div className="action-buttons">
+                                                    <button className="btn-action btn-view">Ver</button>
+                                                    <button className="btn-action btn-edit">Editar</button>
+                                                    <button className="btn-action btn-delete">Eliminar</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
 
+                        {/* Pagination */}
                         <div className="pagination">
                             <div className="pagination-info">
                                 Mostrando 1-5 de 65 turnos
