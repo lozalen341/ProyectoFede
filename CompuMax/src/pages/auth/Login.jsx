@@ -10,14 +10,14 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        const API_KEY = import.meta.env.REACT_APP_API_KEY;
+        const API_KEY = import.meta.env.VITE_API_KEY;
 
         try {
             const res = await fetch('http://localhost:3000/user/login', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
-                    "api-key": API_KEY
+                    "x-api-key": API_KEY
                 },
                 body: JSON.stringify({ email, password })
             });
