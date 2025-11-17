@@ -1,4 +1,6 @@
-/* GLOBAL RESET */
+/* Global.css - TODOS los estilos globales compartidos */
+
+/* ========== RESET GLOBAL ========== */
 * {
     margin: 0;
     padding: 0;
@@ -12,103 +14,362 @@ body {
     line-height: 1.6;
 }
 
-/* GLOBAL ELEMENTS - Solo para páginas públicas */
-.public-page .container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* ========== VARIABLES CSS ========== */
+:root {
+    /* Paleta principal - Azules suaves y grises */
+    --primary: #4A5F7F;
+    --primary-dark: #3A4F6F;
+    --primary-light: #5A7099;
+
+    /* Acentos - Verde azulado suave */
+    --accent: #4A9B8E;
+    --accent-dark: #3A8B7E;
+    --accent-light: #5AABAE;
+
+    /* Neutrales */
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB;
+    --gray-600: #4B5563;
+    --gray-700: #374151;
+    --gray-800: #1F2937;
+    --gray-900: #111827;
+
+    /* Backgrounds */
+    --bg-white: #FFFFFF;
+    --bg-light: #F9FAFB;
+    --bg-card: #FFFFFF;
+
+    /* Text */
+    --text-primary: #1F2937;
+    --text-secondary: #4B5563;
+    --text-muted: #6B7280;
+
+    /* Sombras suaves */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+    /* Estados (agregados para el panel) */
+    --status-pending: #F59E0B;
+    /* Naranja para "Pendiente" */
+    --status-process: #3B82F6;
+    /* Azul para "En Proceso" */
+    --status-completed: #10B981;
+    /* Verde para "Finalizado" */
+    --status-cancelled: #EF4444;
+    /* Rojo para "Cancelado" */
 }
 
-/* Botones globales - SOLO fuera del panel de admin */
-body:not(.admin-panel) .btn-primary,
-.public-page .btn-primary {
-    background-color: var(--accent);
-    color: white;
-    padding: 1rem 2.5rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-}
-
-body:not(.admin-panel) .btn-primary:hover,
-.public-page .btn-primary:hover {
-    background-color: var(--accent-dark);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
-}
-
-body:not(.admin-panel) .btn-secondary,
-.public-page .btn-secondary {
-    background-color: transparent;
-    color: white;
-    padding: 1rem 2.5rem;
-    border: 2px solid white;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-}
-
-body:not(.admin-panel) .btn-secondary:hover,
-.public-page .btn-secondary:hover {
-    background-color: white;
-    color: var(--primary);
-}
-
-/* HEADER GLOBAL - Solo páginas públicas */
-body:not(.admin-panel) header,
-.public-page header {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-    color: white;
-    padding: 1.5rem 0;
-    box-shadow: var(--shadow-md);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-nav {
+/* ========== CONTENEDORES ========== */
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+}
+
+/* ========== BOTONES GLOBALES ========== */
+.btn-primary {
+    background-color: var(--accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary);
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Botones de acción */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-action {
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-view {
+    background: rgba(74, 155, 142, 0.1);
+    color: var(--accent);
+}
+
+.btn-view:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-edit {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--status-process);
+}
+
+.btn-edit:hover {
+    background: var(--status-process);
+    color: white;
+}
+
+.btn-delete,
+.btn-suspend {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--status-cancelled);
+}
+
+.btn-delete:hover,
+.btn-suspend:hover {
+    background: var(--status-cancelled);
+    color: white;
+}
+
+/* ========== INPUTS GLOBALES ========== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    background: var(--bg-white);
+    font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(74, 155, 142, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted);
+}
+
+/* ========== BADGES DE ESTADO ========== */
+.status-badge {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+
+.status-badge.pending,
+.status-badge.pendiente {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--status-pending);
+}
+
+.status-badge.process,
+.status-badge.en-proceso {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--status-process);
+}
+
+.status-badge.completed,
+.status-badge.finalizado {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--status-completed);
+}
+
+.status-badge.cancelled,
+.status-badge.cancelado {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--status-cancelled);
+}
+
+.status-badge.activo {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--status-completed);
+}
+
+.status-badge.inactivo {
+    background: rgba(107, 114, 128, 0.1);
+    color: var(--text-secondary);
+}
+
+.status-badge.suspendido {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--status-cancelled);
+}
+
+/* ========== TABLAS GLOBALES ========== */
+.data-table-container {
+    background: var(--bg-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.table-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--gray-200);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logo {
+.table-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin: 0;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.data-table thead {
+    background: var(--gray-50);
+}
+
+.data-table th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.data-table td {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--gray-200);
+    color: var(--text-primary);
+}
+
+.data-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+    background: var(--gray-50);
+}
+
+/* ========== PAGINACIÓN ========== */
+.pagination {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--gray-200);
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.logo img {
-    height: 75px;
-    width: auto;
-    object-fit: contain;
+.pagination-info {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
-.nav-links {
+.pagination-buttons {
     display: flex;
-    gap: 2.5rem;
-    list-style: none;
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
+.page-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--gray-300);
+    background: var(--bg-white);
+    border-radius: 6px;
+    cursor: pointer;
     font-weight: 500;
-    transition: opacity 0.3s;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
 }
 
-.nav-links a:hover {
-    opacity: 0.8;
+.page-btn:hover:not(:disabled) {
+    background: var(--gray-50);
+    border-color: var(--accent);
 }
 
-/* FOOTER GLOBAL */
+.page-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ========== CARDS ========== */
+.card {
+    background: var(--bg-white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ========== FOOTER GLOBAL ========== */
 footer {
     background-color: var(--gray-900);
     color: white;
@@ -141,13 +402,6 @@ footer {
     color: var(--accent-light);
 }
 
-.footer-bottom {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid var(--gray-700);
-    color: var(--gray-300);
-}
-
 .footer-item {
     display: flex;
     align-items: center;
@@ -162,9 +416,37 @@ footer {
     object-fit: contain;
 }
 
-/* GLOBAL RESPONSIVE */
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gray-700);
+    color: var(--gray-300);
+}
+
+/* ========== RESPONSIVE GLOBAL ========== */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
+    .container {
+        padding: 0 1rem;
+    }
+
+    .data-table {
+        font-size: 0.85rem;
+        min-width: 700px;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .action-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-action {
+        width: 100%;
     }
 }
