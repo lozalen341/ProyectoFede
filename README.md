@@ -1,5 +1,6 @@
-![Compumax Logo](CompuMax-blanco.png)
-
+<p align="center">
+  <img src="CompuMax-blanco.png" alt="CompuMax Logo" />
+</p>
 - **[Backend](./api)**
   Contiene la API, lógica y datos.
 
