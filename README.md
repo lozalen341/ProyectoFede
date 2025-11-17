@@ -1,9 +1,9 @@
 <div align="center"><h1>CompuMax</h1></div>
 
-- **[Backend](./api/README.MD)**
+- **[Backend](./api)**
   Contiene la API, lógica y datos.
 
-- **[Frontend](./CompuMax/README.md)**
+- **[Frontend](./CompuMax)**
   Contiene la aplicación de interfaz de usuario.
 
 ---
