@@ -1,4 +1,4 @@
-<div align="center"><h1>CompuMax</h1></div>
+<center>![Compumax Logo](../docs/images/LogoApp.png)</center>
 
 - **[Backend](./api)**
   Contiene la API, lógica y datos.
