@@ -1,6 +1,6 @@
 <div align="center"><h1>CompuMax</h1></div>
 
-- **[Backend](./api/README.md)**
+- **[Backend](./api/README.MD)**
   Contiene la API, lógica y datos.
 
 - **[Frontend](./CompuMax/README.md)**
