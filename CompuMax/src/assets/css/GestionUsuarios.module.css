@@ -1,13 +1,3 @@
-/* GestionUsuarios.module.css - ESTILO CARD/GRID MODERNO */
-
-/* Layout Principal */
-.adminLayout {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    min-height: 100vh;
-    background-color: var(--bg-light);
-}
-
 /* Main Content */
 .mainContent {
     padding: 2rem;
@@ -54,6 +44,7 @@
     align-items: center;
 }
 
+/* Botones */
 .btnSecondary {
     background: var(--bg-white);
     color: var(--primary);
@@ -90,7 +81,7 @@
     box-shadow: var(--shadow-md);
 }
 
-/* ========== STATS GRID - ESTILO COMPACTO ========== */
+/* ========== STATS GRID ========== */
 .statsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -153,7 +144,7 @@
     color: var(--text-muted);
 }
 
-/* ========== SEARCH & FILTER BAR - HORIZONTAL ========== */
+/* ========== SEARCH & FILTER BAR ========== */
 .searchFilterBar {
     background: var(--bg-white);
     padding: 1.25rem;
@@ -246,7 +237,7 @@
     box-shadow: var(--shadow-sm);
 }
 
-/* ========== TABLE CONTAINER - ESTILO LIMPIO ========== */
+/* ========== TABLE ========== */
 .dataTableContainer {
     background: var(--bg-white);
     border-radius: 12px;
@@ -305,7 +296,7 @@
     border-color: var(--accent);
 }
 
-/* ========== DATA TABLE - ESTILO AVATAR ========== */
+/* DATA TABLE AVATAR */
 .tableWrapper {
     overflow-x: auto;
 }
@@ -467,7 +458,7 @@
     border-color: var(--accent);
 }
 
-/* ========== PAGINATION ========== */
+/* PAGINATION */
 .pagination {
     padding: 1.5rem;
     border-top: 1px solid var(--gray-200);
@@ -535,17 +526,7 @@
     color: var(--text-muted);
 }
 
-/* ========== RESPONSIVE ========== */
-@media (max-width: 1024px) {
-    .adminLayout {
-        grid-template-columns: 1fr;
-    }
-
-    .statsGrid {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    }
-}
-
+/* RESPONSIVE */
 @media (max-width: 768px) {
     .mainContent {
         padding: 1rem;
