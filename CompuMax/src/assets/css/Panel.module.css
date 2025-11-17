@@ -1,12 +1,11 @@
+/* Panel.module.css - ESTILO TIMELINE/DASHBOARD DINÁMICO */
+
 /* Layout principal */
 .adminLayout {
     display: grid;
     grid-template-columns: 260px 1fr;
     min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text-primary);
-    background-color: var(--bg-light);
-    line-height: 1.6;
+    background: linear-gradient(135deg, var(--bg-light) 0%, #E8F0F2 100%);
 }
 
 /* Main Content */
@@ -15,199 +14,202 @@
     overflow-y: auto;
 }
 
-/* Mobile Header */
-.mobileHeader {
-    display: none;
-    padding: 1rem;
-    background: var(--bg-white);
-    box-shadow: var(--shadow-sm);
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.menuBtn {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 0.75rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.menuBtn:hover {
-    background: var(--primary-dark);
-}
-
-.mobileLogo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-dark);
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-}
-
-.overlay.active {
-    display: block;
-}
-
-/* CONTENT (todo lo siguiente es global del contenido) */
-
-.mainContent :global(.content-header) {
+/* ========== HEADER CON GRADIENTE ========== */
+.contentHeader {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+    padding: 2rem;
+    border-radius: 16px;
     margin-bottom: 2rem;
+    box-shadow: var(--shadow-lg);
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
-.mainContent :global(.page-title) {
-    font-size: 2rem;
-    color: var(--primary-dark);
+.headerLeft {
+    flex: 1;
+}
+
+.pageTitle {
+    font-size: 2.2rem;
     font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: white;
 }
 
-.mainContent :global(.header-actions) {
+.pageSubtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.headerActions {
     display: flex;
     gap: 1rem;
     align-items: center;
-    flex-wrap: wrap;
 }
 
-.mainContent :global(.search-box) {
+.searchBox {
     position: relative;
 }
 
-.mainContent :global(.search-input) {
-    padding: 0.75rem 1rem 0.75rem 2.5rem;
-    border: 1px solid var(--gray-300);
-    border-radius: 8px;
-    font-size: 0.95rem;
-    min-width: 300px;
-    transition: all 0.3s ease;
-}
-
-.mainContent :global(.search-input:focus) {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(74, 155, 142, 0.1);
-}
-
-.mainContent :global(.search-icon) {
+.searchIcon {
     position: absolute;
-    left: 0.875rem;
+    left: 1rem;
     top: 50%;
     transform: translateY(-50%);
+    font-size: 1.1rem;
     color: var(--text-muted);
 }
 
-/* Botón primario */
-.mainContent :global(.btn-primary) {
-    background: var(--accent);
-    color: white;
-    padding: 0.75rem 1.5rem;
+.searchInput {
+    padding: 0.875rem 1rem 0.875rem 3rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    min-width: 300px;
+    box-shadow: var(--shadow-sm);
+}
+
+.searchInput:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.btnPrimary {
+    background: white;
+    color: var(--accent);
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    box-shadow: var(--shadow-sm);
 }
 
-.mainContent :global(.btn-primary:hover) {
-    background: var(--accent-dark);
+.btnPrimary:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
 
-/* Stats Grid */
-.mainContent :global(.stats-grid) {
+/* ========== STATS GRID - ESTILO DASHBOARD COLORIDO ========== */
+.statsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
-.mainContent :global(.stat-card) {
+.statCard {
     background: var(--bg-white);
-    padding: 1.5rem;
-    border-radius: 12px;
+    padding: 1.75rem;
+    border-radius: 16px;
     box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    transition: all 0.3s ease;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
 }
 
-.mainContent :global(.stat-card:hover) {
-    transform: translateY(-4px);
+.statCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+}
+
+.statCard:hover {
+    transform: translateY(-6px);
     box-shadow: var(--shadow-lg);
 }
 
-.mainContent :global(.stat-icon) {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
+.statPending::before {
+    background: var(--status-pending);
+}
+
+.statProcess::before {
+    background: var(--status-process);
+}
+
+.statCompleted::before {
+    background: var(--status-completed);
+}
+
+.statRevenue::before {
+    background: linear-gradient(90deg, #10B981, #059669);
+}
+
+.statIcon {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
     flex-shrink: 0;
 }
 
-/* Colores de iconos */
-.mainContent :global(.stat-icon.pending) {
-    background: rgba(245, 158, 11, 0.1);
-    color: var(--status-pending);
+.statPending .statIcon {
+    background: rgba(245, 158, 11, 0.15);
 }
 
-.mainContent :global(.stat-icon.process) {
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--status-process);
+.statProcess .statIcon {
+    background: rgba(59, 130, 246, 0.15);
 }
 
-.mainContent :global(.stat-icon.completed) {
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--status-completed);
+.statCompleted .statIcon {
+    background: rgba(16, 185, 129, 0.15);
 }
 
-.mainContent :global(.stat-icon.users) {
-    background: rgba(74, 155, 142, 0.1);
-    color: var(--accent);
+.statRevenue .statIcon {
+    background: rgba(16, 185, 129, 0.15);
 }
 
-.mainContent :global(.stat-content h3) {
-    font-size: 1.8rem;
+.statContent {
+    flex: 1;
+}
+
+.statContent h3 {
+    font-size: 2rem;
     color: var(--text-primary);
     font-weight: 700;
+    margin: 0 0 0.25rem 0;
+    line-height: 1;
 }
 
-.mainContent :global(.stat-content p) {
+.statContent p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
 }
 
-/* Filters Bar */
-.mainContent :global(.filters-bar) {
+.statTrend {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* ========== FILTERS BAR - ESTILO COMPACTO ========== */
+.filtersBar {
     background: var(--bg-white);
     padding: 1.25rem;
     border-radius: 12px;
@@ -215,247 +217,350 @@
     margin-bottom: 1.5rem;
     display: flex;
     gap: 1rem;
+    align-items: flex-end;
     flex-wrap: wrap;
-    align-items: center;
 }
 
-.mainContent :global(.filter-group) {
+.filterGroup {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.5rem;
     flex: 1;
-    min-width: 150px;
+    min-width: 180px;
 }
 
-.mainContent :global(.filter-label) {
+.filterLabel {
     font-size: 0.85rem;
     color: var(--text-secondary);
-    font-weight: 500;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.mainContent :global(.filter-select) {
-    padding: 0.625rem 1rem;
-    border: 1px solid var(--gray-300);
-    border-radius: 6px;
+.filterSelect {
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--gray-300);
+    border-radius: 8px;
     font-size: 0.95rem;
-    color: var(--text-primary);
     background: var(--bg-white);
     cursor: pointer;
     transition: all 0.3s ease;
+    font-weight: 500;
 }
 
-.mainContent :global(.filter-select:focus) {
+.filterSelect:focus {
     outline: none;
     border-color: var(--accent);
 }
 
-/* Data Table */
-.mainContent :global(.data-table-container) {
+.btnExport {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--accent);
     background: var(--bg-white);
-    border-radius: 12px;
-    box-shadow: var(--shadow-md);
-    overflow: hidden;
-}
-
-.mainContent :global(.table-header) {
-    padding: 1.25rem 1.5rem;
-    border-bottom: 1px solid var(--gray-200);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.mainContent :global(.table-title) {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--primary-dark);
-}
-
-.mainContent :global(.table-wrapper) {
-    overflow-x: auto;
-}
-
-.mainContent :global(.data-table) {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 800px;
-}
-
-.mainContent :global(.data-table thead) {
-    background: var(--gray-50);
-}
-
-.mainContent :global(.data-table th) {
-    padding: 1rem 1.5rem;
-    text-align: left;
-    font-weight: 600;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-}
-
-.mainContent :global(.data-table td) {
-    padding: 1.25rem 1.5rem;
-    border-top: 1px solid var(--gray-200);
-    color: var(--text-primary);
-}
-
-.mainContent :global(.data-table tbody tr) {
-    transition: background 0.2s ease;
-}
-
-.mainContent :global(.data-table tbody tr:hover) {
-    background: var(--gray-50);
-}
-
-/* Status Badges */
-.mainContent :global(.status-badge) {
-    display: inline-block;
-    padding: 0.375rem 0.875rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: capitalize;
-    white-space: nowrap;
-}
-
-.mainContent :global(.status-badge.pending) {
-    background: rgba(245, 158, 11, 0.1);
-    color: var(--status-pending);
-}
-
-.mainContent :global(.status-badge.process) {
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--status-process);
-}
-
-.mainContent :global(.status-badge.completed) {
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--status-completed);
-}
-
-.mainContent :global(.status-badge.cancelled) {
-    background: rgba(239, 68, 68, 0.1);
-    color: var(--status-cancelled);
-}
-
-/* Action Buttons */
-.mainContent :global(.action-buttons) {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.mainContent :global(.btn-action) {
-    padding: 0.5rem 0.75rem;
-    border: none;
-    border-radius: 6px;
+    color: var(--accent);
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s ease;
 }
 
-.mainContent :global(.btn-edit) {
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--status-process);
-}
-
-.mainContent :global(.btn-edit:hover) {
-    background: var(--status-process);
-    color: white;
-}
-
-.mainContent :global(.btn-delete) {
-    background: rgba(239, 68, 68, 0.1);
-    color: var(--status-cancelled);
-}
-
-.mainContent :global(.btn-delete:hover) {
-    background: var(--status-cancelled);
-    color: white;
-}
-
-.mainContent :global(.btn-view) {
-    background: rgba(74, 155, 142, 0.1);
-    color: var(--accent);
-}
-
-.mainContent :global(.btn-view:hover) {
+.btnExport:hover {
     background: var(--accent);
     color: white;
 }
 
-/* Pagination */
-.mainContent :global(.pagination) {
-    padding: 1.25rem 1.5rem;
-    border-top: 1px solid var(--gray-200);
+/* ========== DATA TABLE - ESTILO TIMELINE ========== */
+.dataTableContainer {
+    background: var(--bg-white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.tableHeader {
+    padding: 1.75rem 2rem;
+    border-bottom: 2px solid var(--gray-200);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    background: linear-gradient(135deg, rgba(74, 155, 142, 0.05) 0%, rgba(74, 95, 127, 0.05) 100%);
 }
 
-.mainContent :global(.pagination-info) {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-.mainContent :global(.pagination-buttons) {
+.tableTitle {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin: 0;
     display: flex;
+    align-items: center;
     gap: 0.5rem;
-    flex-wrap: wrap;
 }
 
-.mainContent :global(.page-btn) {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--gray-300);
+.tableActions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btnView {
+    padding: 0.625rem 1.25rem;
+    border: 2px solid var(--gray-300);
     background: var(--bg-white);
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 0.9rem;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
-.mainContent :global(.page-btn:hover:not(:disabled)) {
-    background: var(--gray-50);
+.btnView:hover {
     border-color: var(--accent);
+    color: var(--accent);
 }
 
-.mainContent :global(.page-btn.active) {
+/* ========== TABLE - ESTILO CON AVATARES ========== */
+.tableWrapper {
+    overflow-x: auto;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+.dataTable thead {
+    background: var(--gray-50);
+}
+
+.dataTable th {
+    padding: 1.25rem 1.75rem;
+    text-align: left;
+    font-weight: 700;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.dataTable td {
+    padding: 1.5rem 1.75rem;
+    border-top: 1px solid var(--gray-200);
+    color: var(--text-primary);
+    vertical-align: middle;
+}
+
+.tableRow {
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.tableRow:hover {
+    background: rgba(74, 155, 142, 0.03);
+}
+
+.tableRow:hover::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent);
+}
+
+.idCell {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 0.95rem;
+}
+
+.clienteCell {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.horaCell {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.statusBadge.pendiente {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--status-pending);
+    border: 2px solid var(--status-pending);
+}
+
+.statusBadge.en-proceso {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--status-process);
+    border: 2px solid var(--status-process);
+}
+
+.statusBadge.finalizado {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--status-completed);
+    border: 2px solid var(--status-completed);
+}
+
+.statusBadge.cancelado {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--status-cancelled);
+    border: 2px solid var(--status-cancelled);
+}
+
+.actionButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btnAction {
+    padding: 0.625rem 0.875rem;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btnAction.btnView {
+    background: rgba(74, 155, 142, 0.1);
+    color: var(--accent);
+}
+
+.btnAction.btnView:hover {
     background: var(--accent);
     color: white;
     border-color: var(--accent);
 }
 
-.mainContent :global(.page-btn:disabled) {
-    opacity: 0.5;
+.btnAction.btnEdit {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--status-process);
+}
+
+.btnAction.btnEdit:hover {
+    background: var(--status-process);
+    color: white;
+    border-color: var(--status-process);
+}
+
+.btnAction.btnDelete {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--status-cancelled);
+}
+
+.btnAction.btnDelete:hover {
+    background: var(--status-cancelled);
+    color: white;
+    border-color: var(--status-cancelled);
+}
+
+/* ========== PAGINATION ========== */
+.pagination {
+    padding: 1.75rem 2rem;
+    border-top: 2px solid var(--gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: var(--gray-50);
+}
+
+.paginationInfo {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.paginationButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.pageBtn {
+    padding: 0.625rem 1rem;
+    border: 2px solid var(--gray-300);
+    background: var(--bg-white);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 45px;
+}
+
+.pageBtn:hover:not(:disabled) {
+    background: var(--gray-50);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.pageBtn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: scale(1.05);
+}
+
+.pageBtn:disabled {
+    opacity: 0.4;
     cursor: not-allowed;
 }
 
-/* Responsive Design (NO sidebar aquí) */
+/* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
     .adminLayout {
         grid-template-columns: 1fr;
     }
 
-    .mobileHeader {
-        display: flex;
+    .contentHeader {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .mainContent {
-        padding-top: 0;
+    .headerActions {
+        width: 100%;
+        flex-direction: column;
     }
 
-    .mainContent :global(.search-input) {
-        min-width: 200px;
+    .searchInput {
+        width: 100%;
+        min-width: unset;
     }
 
-    .mainContent :global(.stats-grid) {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    .btnPrimary {
+        width: 100%;
+        justify-content: center;
     }
 }
 
@@ -464,86 +569,66 @@
         padding: 1rem;
     }
 
-    .mainContent :global(.content-header) {
-        flex-direction: column;
-        align-items: flex-start;
+    .contentHeader {
+        padding: 1.5rem;
     }
 
-    .mainContent :global(.header-actions) {
-        width: 100%;
-        flex-direction: column;
+    .pageTitle {
+        font-size: 1.75rem;
     }
 
-    .mainContent :global(.search-box) {
-        width: 100%;
-    }
-
-    .mainContent :global(.search-input) {
-        width: 100%;
-        min-width: unset;
-    }
-
-    .mainContent :global(.btn-primary) {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .mainContent :global(.data-table) {
-        font-size: 0.85rem;
-        min-width: 700px;
-    }
-
-    .mainContent :global(.data-table th),
-    .mainContent :global(.data-table td) {
-        padding: 0.75rem;
-    }
-
-    .mainContent :global(.stats-grid) {
+    .statsGrid {
         grid-template-columns: 1fr;
     }
 
-    .mainContent :global(.stat-card) {
-        padding: 1.25rem;
-    }
-
-    .mainContent :global(.page-title) {
-        font-size: 1.5rem;
-    }
-
-    .mainContent :global(.pagination) {
+    .filtersBar {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
     }
 
-    .mainContent :global(.pagination-buttons) {
+    .filterGroup {
+        min-width: 100%;
+    }
+
+    .btnExport {
         width: 100%;
-        justify-content: center;
     }
 
-    .mainContent :global(.page-btn) {
-        padding: 0.5rem 0.75rem;
+    .dataTable {
         font-size: 0.85rem;
+        min-width: 800px;
+    }
+
+    .pagination {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .paginationButtons {
+        justify-content: center;
     }
 }
 
 @media (max-width: 480px) {
-
-    .mainContent :global(.stat-content h3) {
-        font-size: 1.5rem;
+    .statContent h3 {
+        font-size: 1.6rem;
     }
 
-    .mainContent :global(.stat-icon) {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
+    .statIcon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.6rem;
     }
 
-    .mainContent :global(.action-buttons) {
-        flex-direction: column;
-        width: 100%;
+    .avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
     }
 
-    .mainContent :global(.btn-action) {
-        width: 100%;
+    .pageBtn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+        min-width: 38px;
     }
 }

@@ -1,4 +1,4 @@
-/* GestionUsuarios.module.css */
+/* GestionUsuarios.module.css - ESTILO CARD/GRID MODERNO */
 
 /* Layout Principal */
 .adminLayout {
@@ -15,59 +15,62 @@
     background-color: var(--bg-light);
 }
 
-/* ========== CONTENIDO GLOBAL CON :global() ========== */
-
-.mainContent :global(.content-header) {
+/* ========== HEADER MINIMALISTA ========== */
+.contentHeader {
     margin-bottom: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
 }
 
-.mainContent :global(.page-title) {
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.titleSection {
+    flex: 1;
+}
+
+.pageTitle {
     font-size: 2rem;
     color: var(--primary-dark);
     font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.breadcrumb {
+    color: var(--text-muted);
+    font-size: 0.9rem;
     margin: 0;
 }
 
-.mainContent :global(.header-actions) {
+.headerActions {
     display: flex;
     gap: 1rem;
     align-items: center;
-    flex-wrap: wrap;
 }
 
-.mainContent :global(.search-box) {
-    position: relative;
-}
-
-.mainContent :global(.search-icon) {
-    position: absolute;
-    left: 0.875rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-}
-
-.mainContent :global(.search-input) {
-    padding: 0.75rem 1rem 0.75rem 2.5rem;
-    border: 1px solid var(--gray-300);
+.btnSecondary {
+    background: var(--bg-white);
+    color: var(--primary);
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--gray-300);
     border-radius: 8px;
-    font-size: 0.95rem;
-    min-width: 300px;
+    font-weight: 600;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.mainContent :global(.search-input:focus) {
-    outline: none;
+.btnSecondary:hover {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(74, 155, 142, 0.1);
+    color: var(--accent);
 }
 
-.mainContent :global(.btn-primary) {
+.btnPrimary {
     background: var(--accent);
     color: white;
     padding: 0.75rem 1.5rem;
@@ -81,82 +84,77 @@
     gap: 0.5rem;
 }
 
-.mainContent :global(.btn-primary:hover) {
+.btnPrimary:hover {
     background: var(--accent-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
 
-/* Stats Grid */
-.mainContent :global(.stats-grid) {
+/* ========== STATS GRID - ESTILO COMPACTO ========== */
+.statsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
-.mainContent :global(.stat-card) {
+.statCard {
     background: var(--bg-white);
     padding: 1.5rem;
     border-radius: 12px;
-    box-shadow: var(--shadow-md);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
+    border-left: 4px solid var(--accent);
 }
 
-.mainContent :global(.stat-card:hover) {
+.statCard:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
 }
 
-.mainContent :global(.stat-icon) {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
+.statTop {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.statLabel {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.statIcon {
     font-size: 1.5rem;
-    flex-shrink: 0;
+    opacity: 0.8;
 }
 
-.mainContent :global(.stat-icon-total) {
-    background: rgba(74, 155, 142, 0.1);
-    color: var(--accent);
-}
-
-.mainContent :global(.stat-icon-active) {
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--status-completed);
-}
-
-.mainContent :global(.stat-icon-new) {
-    background: rgba(245, 158, 11, 0.1);
-    color: var(--status-pending);
-}
-
-.mainContent :global(.stat-icon-pending) {
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--status-process);
-}
-
-.mainContent :global(.stat-content h3) {
-    font-size: 1.8rem;
+.statValue {
+    font-size: 2rem;
     color: var(--text-primary);
     font-weight: 700;
-    margin: 0;
+    margin: 0 0 0.5rem 0;
 }
 
-.mainContent :global(.stat-content p) {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin: 0;
+.statBottom {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.85rem;
 }
 
-/* Filters Bar */
-.mainContent :global(.filters-bar) {
+.statChange {
+    color: var(--status-completed);
+    font-weight: 600;
+}
+
+.statPeriod {
+    color: var(--text-muted);
+}
+
+/* ========== SEARCH & FILTER BAR - HORIZONTAL ========== */
+.searchFilterBar {
     background: var(--bg-white);
     padding: 1.25rem;
     border-radius: 12px;
@@ -164,49 +162,387 @@
     margin-bottom: 1.5rem;
     display: flex;
     gap: 1rem;
-    flex-wrap: wrap;
     align-items: center;
+    flex-wrap: wrap;
 }
 
-.mainContent :global(.filter-group) {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+.searchSection {
     flex: 1;
-    min-width: 150px;
+    min-width: 300px;
 }
 
-.mainContent :global(.filter-label) {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    font-weight: 500;
+.searchBox {
+    position: relative;
+    width: 100%;
 }
 
-.mainContent :global(.filter-select) {
-    padding: 0.625rem 1rem;
+.searchIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem;
     border: 1px solid var(--gray-300);
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 0.95rem;
-    color: var(--text-primary);
-    background: var(--bg-white);
-    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.mainContent :global(.filter-select:focus) {
+.searchInput:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(74, 155, 142, 0.1);
+}
+
+.filterSection {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filterSelect {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: var(--bg-white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 160px;
+}
+
+.filterSelect:focus {
     outline: none;
     border-color: var(--accent);
 }
 
-/* Data Table - ajuste específico para tabla de usuarios */
-.mainContent :global(.data-table) {
+.viewToggle {
+    display: flex;
+    gap: 0.25rem;
+    background: var(--gray-100);
+    padding: 0.25rem;
+    border-radius: 8px;
+}
+
+.viewToggle button {
+    padding: 0.5rem 0.75rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.viewToggle button.active {
+    background: var(--bg-white);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ========== TABLE CONTAINER - ESTILO LIMPIO ========== */
+.dataTableContainer {
+    background: var(--bg-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.tableHeader {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.tableHeaderLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.tableTitle {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin: 0;
+}
+
+.tableCount {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.tableHeaderRight {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btnFilter,
+.btnExport {
+    padding: 0.625rem 1rem;
+    border: 1px solid var(--gray-300);
+    background: var(--bg-white);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btnFilter:hover,
+.btnExport:hover {
+    background: var(--gray-50);
+    border-color: var(--accent);
+}
+
+/* ========== DATA TABLE - ESTILO AVATAR ========== */
+.tableWrapper {
+    overflow-x: auto;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
     min-width: 1000px;
 }
 
-/* Responsive */
+.dataTable thead {
+    background: var(--gray-50);
+}
+
+.dataTable th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dataTable td {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--gray-200);
+    color: var(--text-primary);
+}
+
+.tableRow {
+    transition: background 0.2s ease;
+}
+
+.tableRow:hover {
+    background: var(--gray-50);
+}
+
+.idCell {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.userCell {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.userAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.userName {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.userEmail {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.contactInfo span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.dateCell {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.activityCell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.turnosCount {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.turnosLabel {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.statusBadge.activo {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--status-completed);
+}
+
+.statusBadge.inactivo {
+    background: rgba(107, 114, 128, 0.1);
+    color: var(--text-secondary);
+}
+
+.statusBadge.suspendido {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--status-cancelled);
+}
+
+.actionButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btnAction {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gray-300);
+    background: var(--bg-white);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btnAction:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* ========== PAGINATION ========== */
+.pagination {
+    padding: 1.5rem;
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.paginationLeft {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.paginationInfo {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.paginationSelect {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.paginationRight {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.pageBtn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--gray-300);
+    background: var(--bg-white);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    min-width: 40px;
+}
+
+.pageBtn:hover:not(:disabled) {
+    background: var(--gray-50);
+    border-color: var(--accent);
+}
+
+.pageBtn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.pageBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pageDots {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    color: var(--text-muted);
+}
+
+/* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
     .adminLayout {
         grid-template-columns: 1fr;
+    }
+
+    .statsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
 }
 
@@ -215,56 +551,70 @@
         padding: 1rem;
     }
 
-    .mainContent :global(.content-header) {
+    .headerContent {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
     }
 
-    .mainContent :global(.header-actions) {
-        width: 100%;
+    .headerActions {
         flex-direction: column;
     }
 
-    .mainContent :global(.search-box) {
-        width: 100%;
-    }
-
-    .mainContent :global(.search-input) {
-        width: 100%;
-        min-width: unset;
-    }
-
-    .mainContent :global(.btn-primary) {
+    .btnSecondary,
+    .btnPrimary {
         width: 100%;
         justify-content: center;
     }
 
-    .mainContent :global(.stats-grid) {
+    .searchFilterBar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .searchSection {
+        min-width: 100%;
+    }
+
+    .filterSection {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filterSelect {
+        width: 100%;
+    }
+
+    .statsGrid {
         grid-template-columns: 1fr;
     }
 
-    .mainContent :global(.stat-card) {
-        padding: 1.25rem;
-    }
-
-    .mainContent :global(.page-title) {
-        font-size: 1.5rem;
-    }
-
-    .mainContent :global(.data-table) {
+    .dataTable {
         font-size: 0.85rem;
         min-width: 900px;
+    }
+
+    .pagination {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .paginationRight {
+        justify-content: center;
     }
 }
 
 @media (max-width: 480px) {
-    .mainContent :global(.stat-content h3) {
+    .pageTitle {
         font-size: 1.5rem;
     }
 
-    .mainContent :global(.stat-icon) {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
+    .statValue {
+        font-size: 1.6rem;
+    }
+
+    .userAvatar {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
     }
 }
