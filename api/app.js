@@ -16,9 +16,6 @@ api.use(cors({
   allowedHeaders: ["Content-Type", "Authorization", "x-api-key"]
 }));
 
-api.options("*", cors());
-
-
 api.use(express.json());
 api.use(checkApiKey);
 
