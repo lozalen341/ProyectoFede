@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../assets/css/SideBarAdmin.css";
 
 function SideBar() {
@@ -10,14 +10,17 @@ function SideBar() {
 
     return (
         <>
+            {/* Overlay - fuera del sidebar */}
             <div className={`overlay ${sidebarOpen ? 'active' : ''}`} onClick={closeSidebar}></div>
 
+            {/* Mobile Header - FUERA del sidebar */}
             <div className="mobileHeader">
                 <button className="menuBtn" onClick={toggleSidebar}>☰</button>
                 <div className="mobileLogo">CompuMax</div>
                 <div style={{ width: '40px' }}></div>
             </div>
 
+            {/* Sidebar - solo el menú lateral */}
             <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
                 <div className="sidebarHeader">
                     <div className="sidebarLogo">CompuMax</div>
@@ -25,30 +28,40 @@ function SideBar() {
                 </div>
 
                 <nav className="sidebarNav">
-                    <Link to="/panel" className="navItem active" onClick={closeSidebar}>
+                    <NavLink
+                        to="/admin/turnos"
+                        end
+                        className={({ isActive }) => "navItem" + (isActive ? " active" : "")}
+                        onClick={closeSidebar}
+                    >
                         <span className="navIcon">📊</span>
-                        <span>Dashboard</span>
-                    </Link>
+                        <span>Gestión de Turnos</span>
+                    </NavLink>
 
-                    <Link to="/Gestion" className="navItem" onClick={closeSidebar}>
+                    <NavLink
+                        to="/admin/usuarios"
+                        className={({ isActive }) => "navItem" + (isActive ? " active" : "")}
+                        onClick={closeSidebar}
+                    >
                         <span className="navIcon">👥</span>
                         <span>Gestión de Usuarios</span>
-                    </Link>
+                    </NavLink>
 
-                    <Link to="/servicios" className="navItem" onClick={closeSidebar}>
+                    {/* Otros enlaces comentados */}
+                    {/* <NavLink to="/servicios" className="navItem" onClick={closeSidebar}>
                         <span className="navIcon">🔧</span>
                         <span>Servicios</span>
-                    </Link>
+                    </NavLink>
 
-                    <Link to="/reportes" className="navItem" onClick={closeSidebar}>
+                    <NavLink to="/reportes" className="navItem" onClick={closeSidebar}>
                         <span className="navIcon">📈</span>
                         <span>Reportes</span>
-                    </Link>
+                    </NavLink>
 
-                    <Link to="/configuracion" className="navItem" onClick={closeSidebar}>
+                    <NavLink to="/configuracion" className="navItem" onClick={closeSidebar}>
                         <span className="navIcon">⚙️</span>
                         <span>Configuración</span>
-                    </Link>
+                    </NavLink> */}
                 </nav>
 
                 <div className="sidebarFooter">

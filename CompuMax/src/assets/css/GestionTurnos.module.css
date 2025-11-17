@@ -1,6 +1,6 @@
-/* Panel.module.css - ESTILO TIMELINE/DASHBOARD DINÁMICO */
+/*ESTILO TIMELINE/DASHBOARD DINÁMICO */
 
-/* Layout principal */
+/* ========== LAYOUT PRINCIPAL ========== */
 .adminLayout {
     display: grid;
     grid-template-columns: 260px 1fr;
@@ -8,7 +8,6 @@
     background: linear-gradient(135deg, var(--bg-light) 0%, #E8F0F2 100%);
 }
 
-/* Main Content */
 .mainContent {
     padding: 2rem;
     overflow-y: auto;
@@ -36,17 +35,15 @@
 .pageTitle {
     font-size: 2.2rem;
     font-weight: 700;
-    margin: 0 0 0.5rem 0;
+    margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    color: white;
 }
 
 .pageSubtitle {
     font-size: 1rem;
     opacity: 0.9;
-    margin: 0;
 }
 
 .headerActions {
@@ -55,6 +52,7 @@
     align-items: center;
 }
 
+/* ========== BUSCADOR ========== */
 .searchBox {
     position: relative;
 }
@@ -82,6 +80,7 @@
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
 
+/* ========== BOTONES HEADER ========== */
 .btnPrimary {
     background: white;
     color: var(--accent);
@@ -102,7 +101,7 @@
     box-shadow: var(--shadow-md);
 }
 
-/* ========== STATS GRID - ESTILO DASHBOARD COLORIDO ========== */
+/* ========== STATS GRID ========== */
 .statsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -138,21 +137,10 @@
     box-shadow: var(--shadow-lg);
 }
 
-.statPending::before {
-    background: var(--status-pending);
-}
-
-.statProcess::before {
-    background: var(--status-process);
-}
-
-.statCompleted::before {
-    background: var(--status-completed);
-}
-
-.statRevenue::before {
-    background: linear-gradient(90deg, #10B981, #059669);
-}
+.statPending::before { background: var(--status-pending); }
+.statProcess::before { background: var(--status-process); }
+.statCompleted::before { background: var(--status-completed); }
+.statRevenue::before { background: linear-gradient(90deg, #10B981, #059669); }
 
 .statIcon {
     width: 60px;
@@ -165,21 +153,10 @@
     flex-shrink: 0;
 }
 
-.statPending .statIcon {
-    background: rgba(245, 158, 11, 0.15);
-}
-
-.statProcess .statIcon {
-    background: rgba(59, 130, 246, 0.15);
-}
-
-.statCompleted .statIcon {
-    background: rgba(16, 185, 129, 0.15);
-}
-
-.statRevenue .statIcon {
-    background: rgba(16, 185, 129, 0.15);
-}
+.statPending .statIcon { background: rgba(245, 158, 11, 0.15); }
+.statProcess .statIcon { background: rgba(59, 130, 246, 0.15); }
+.statCompleted .statIcon { background: rgba(16, 185, 129, 0.15); }
+.statRevenue .statIcon { background: rgba(16, 185, 129, 0.15); }
 
 .statContent {
     flex: 1;
@@ -187,17 +164,17 @@
 
 .statContent h3 {
     font-size: 2rem;
-    color: var(--text-primary);
     font-weight: 700;
-    margin: 0 0 0.25rem 0;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
     line-height: 1;
 }
 
 .statContent p {
-    color: var(--text-secondary);
     font-size: 0.95rem;
-    margin: 0 0 0.5rem 0;
     font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
 }
 
 .statTrend {
@@ -208,7 +185,7 @@
     gap: 0.25rem;
 }
 
-/* ========== FILTERS BAR - ESTILO COMPACTO ========== */
+/* ========== FILTERS BAR ========== */
 .filtersBar {
     background: var(--bg-white);
     padding: 1.25rem;
@@ -233,9 +210,6 @@
     font-size: 0.85rem;
     color: var(--text-secondary);
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
 }
 
 .filterSelect {
@@ -249,10 +223,7 @@
     font-weight: 500;
 }
 
-.filterSelect:focus {
-    outline: none;
-    border-color: var(--accent);
-}
+.filterSelect:focus { border-color: var(--accent); }
 
 .btnExport {
     padding: 0.75rem 1.5rem;
@@ -262,7 +233,6 @@
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    transition: all 0.3s ease;
 }
 
 .btnExport:hover {
@@ -270,7 +240,7 @@
     color: white;
 }
 
-/* ========== DATA TABLE - ESTILO TIMELINE ========== */
+/* ========== DATA TABLE TIMELINE ========== */
 .dataTableContainer {
     background: var(--bg-white);
     border-radius: 16px;
@@ -278,52 +248,7 @@
     overflow: hidden;
 }
 
-.tableHeader {
-    padding: 1.75rem 2rem;
-    border-bottom: 2px solid var(--gray-200);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    background: linear-gradient(135deg, rgba(74, 155, 142, 0.05) 0%, rgba(74, 95, 127, 0.05) 100%);
-}
-
-.tableTitle {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--primary-dark);
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.tableActions {
-    display: flex;
-    gap: 0.75rem;
-}
-
-.btnView {
-    padding: 0.625rem 1.25rem;
-    border: 2px solid var(--gray-300);
-    background: var(--bg-white);
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.btnView:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-/* ========== TABLE - ESTILO CON AVATARES ========== */
-.tableWrapper {
-    overflow-x: auto;
-}
+.tableWrapper { overflow-x: auto; }
 
 .dataTable {
     width: 100%;
@@ -331,9 +256,7 @@
     min-width: 900px;
 }
 
-.dataTable thead {
-    background: var(--gray-50);
-}
+.dataTable thead { background: var(--gray-50); }
 
 .dataTable th {
     padding: 1.25rem 1.75rem;
@@ -371,11 +294,7 @@
     background: var(--accent);
 }
 
-.idCell {
-    font-weight: 700;
-    color: var(--accent);
-    font-size: 0.95rem;
-}
+.idCell { font-weight: 700; color: var(--accent); font-size: 0.95rem; }
 
 .clienteCell {
     display: flex;
@@ -399,10 +318,7 @@
     box-shadow: var(--shadow-sm);
 }
 
-.horaCell {
-    font-weight: 600;
-    color: var(--primary);
-}
+.horaCell { font-weight: 600; color: var(--primary); }
 
 .statusBadge {
     display: inline-block;
@@ -438,10 +354,8 @@
     border: 2px solid var(--status-cancelled);
 }
 
-.actionButtons {
-    display: flex;
-    gap: 0.5rem;
-}
+/* ========== ACTION BUTTONS ========== */
+.actionButtons { display: flex; gap: 0.5rem; }
 
 .btnAction {
     padding: 0.625rem 0.875rem;
@@ -456,34 +370,19 @@
     background: rgba(74, 155, 142, 0.1);
     color: var(--accent);
 }
-
-.btnAction.btnView:hover {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-}
+.btnAction.btnView:hover { background: var(--accent); color: white; border-color: var(--accent); }
 
 .btnAction.btnEdit {
     background: rgba(59, 130, 246, 0.1);
     color: var(--status-process);
 }
-
-.btnAction.btnEdit:hover {
-    background: var(--status-process);
-    color: white;
-    border-color: var(--status-process);
-}
+.btnAction.btnEdit:hover { background: var(--status-process); color: white; border-color: var(--status-process); }
 
 .btnAction.btnDelete {
     background: rgba(239, 68, 68, 0.1);
     color: var(--status-cancelled);
 }
-
-.btnAction.btnDelete:hover {
-    background: var(--status-cancelled);
-    color: white;
-    border-color: var(--status-cancelled);
-}
+.btnAction.btnDelete:hover { background: var(--status-cancelled); color: white; border-color: var(--status-cancelled); }
 
 /* ========== PAGINATION ========== */
 .pagination {
@@ -503,10 +402,7 @@
     font-weight: 500;
 }
 
-.paginationButtons {
-    display: flex;
-    gap: 0.5rem;
-}
+.paginationButtons { display: flex; gap: 0.5rem; }
 
 .pageBtn {
     padding: 0.625rem 1rem;
@@ -519,116 +415,35 @@
     min-width: 45px;
 }
 
-.pageBtn:hover:not(:disabled) {
-    background: var(--gray-50);
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-.pageBtn.active {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-    transform: scale(1.05);
-}
-
-.pageBtn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
+.pageBtn:hover:not(:disabled) { background: var(--gray-50); border-color: var(--accent); color: var(--accent); }
+.pageBtn.active { background: var(--accent); color: white; border-color: var(--accent); transform: scale(1.05); }
+.pageBtn:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
-    .adminLayout {
-        grid-template-columns: 1fr;
-    }
-
-    .contentHeader {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .headerActions {
-        width: 100%;
-        flex-direction: column;
-    }
-
-    .searchInput {
-        width: 100%;
-        min-width: unset;
-    }
-
-    .btnPrimary {
-        width: 100%;
-        justify-content: center;
-    }
+    .adminLayout { grid-template-columns: 1fr; }
+    .contentHeader { flex-direction: column; align-items: flex-start; }
+    .headerActions { width: 100%; flex-direction: column; }
+    .searchInput { width: 100%; min-width: unset; }
+    .btnPrimary { width: 100%; justify-content: center; }
 }
 
 @media (max-width: 768px) {
-    .mainContent {
-        padding: 1rem;
-    }
-
-    .contentHeader {
-        padding: 1.5rem;
-    }
-
-    .pageTitle {
-        font-size: 1.75rem;
-    }
-
-    .statsGrid {
-        grid-template-columns: 1fr;
-    }
-
-    .filtersBar {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .filterGroup {
-        min-width: 100%;
-    }
-
-    .btnExport {
-        width: 100%;
-    }
-
-    .dataTable {
-        font-size: 0.85rem;
-        min-width: 800px;
-    }
-
-    .pagination {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .paginationButtons {
-        justify-content: center;
-    }
+    .mainContent { padding: 1rem; }
+    .contentHeader { padding: 1.5rem; }
+    .pageTitle { font-size: 1.75rem; }
+    .statsGrid { grid-template-columns: 1fr; }
+    .filtersBar { flex-direction: column; align-items: stretch; }
+    .filterGroup { min-width: 100%; }
+    .btnExport { width: 100%; }
+    .dataTable { font-size: 0.85rem; min-width: 800px; }
+    .pagination { flex-direction: column; align-items: stretch; }
+    .paginationButtons { justify-content: center; }
 }
 
 @media (max-width: 480px) {
-    .statContent h3 {
-        font-size: 1.6rem;
-    }
-
-    .statIcon {
-        width: 50px;
-        height: 50px;
-        font-size: 1.6rem;
-    }
-
-    .avatar {
-        width: 36px;
-        height: 36px;
-        font-size: 0.9rem;
-    }
-
-    .pageBtn {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.85rem;
-        min-width: 38px;
-    }
+    .statContent h3 { font-size: 1.6rem; }
+    .statIcon { width: 50px; height: 50px; font-size: 1.6rem; }
+    .avatar { width: 36px; height: 36px; font-size: 0.9rem; }
+    .pageBtn { padding: 0.5rem 0.75rem; font-size: 0.85rem; min-width: 38px; }
 }

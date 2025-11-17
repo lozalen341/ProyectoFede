@@ -9,7 +9,8 @@
     position: sticky;
     top: 0;
     height: 100vh;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    z-index: 999;
 }
 
 /* ========== HEADER DEL SIDEBAR ========== */
@@ -99,9 +100,12 @@
     box-shadow: var(--shadow-sm);
     align-items: center;
     justify-content: space-between;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
+    width: 100%;
 }
 
 .menuBtn {
@@ -138,35 +142,92 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .overlay.active {
     display: block;
+    opacity: 1;
 }
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
+    /* Mostrar header móvil */
+    .mobileHeader {
+        display: flex;
+    }
+
+    /* Ajustar contenido para no quedar detrás del header */
+    .adminContent {
+        padding-top: 5rem; /* Espacio para el header fijo */
+    }
+
+    /* Sidebar se convierte en menú lateral deslizable */
     .sidebar {
         position: fixed;
         top: 0;
-        left: 0;
-        bottom: 0;
+        left: -280px; /* Oculto por defecto */
+        height: 100vh;
         width: 280px;
+        background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 100%);
+        box-shadow: var(--shadow-lg);
+        transition: left 0.3s ease;
         z-index: 999;
-        transform: translateX(-100%);
+        overflow-y: auto;
     }
 
     .sidebar.open {
-        transform: translateX(0);
+        left: 0; /* Visible cuando se abre */
     }
 
-    .mobileHeader {
-        display: flex;
+    /* Ajustar el footer para que no se superponga */
+    .sidebarFooter {
+        position: relative;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 260px;
+        left: -260px;
+    }
+
+    .sidebarLogo {
+        font-size: 1.5rem;
+    }
+
+    .navItem {
+        padding: 0.875rem 1.25rem;
+        font-size: 0.95rem;
+    }
+
+    .adminContent {
+        padding-top: 4.5rem;
     }
 }
 
 @media (max-width: 480px) {
     .sidebar {
-        width: 100%;
+        width: 240px;
+        left: -240px;
+    }
+
+    .mobileHeader {
+        padding: 0.75rem;
+    }
+
+    .mobileLogo {
+        font-size: 1.25rem;
+    }
+
+    .menuBtn {
+        padding: 0.625rem;
+        font-size: 1.25rem;
+    }
+
+    .adminContent {
+        padding-top: 4rem;
     }
 }
