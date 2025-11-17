@@ -12,14 +12,15 @@ body {
     line-height: 1.6;
 }
 
-/* GLOBAL ELEMENTS */
-.container {
+/* GLOBAL ELEMENTS - Solo para páginas públicas */
+.public-page .container {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Botones globales */
-.btn-primary {
+/* Botones globales - SOLO fuera del panel de admin */
+body:not(.admin-panel) .btn-primary,
+.public-page .btn-primary {
     background-color: var(--accent);
     color: white;
     padding: 1rem 2.5rem;
@@ -32,13 +33,15 @@ body {
     cursor: pointer;
 }
 
-.btn-primary:hover {
+body:not(.admin-panel) .btn-primary:hover,
+.public-page .btn-primary:hover {
     background-color: var(--accent-dark);
     transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
 }
 
-.btn-secondary {
+body:not(.admin-panel) .btn-secondary,
+.public-page .btn-secondary {
     background-color: transparent;
     color: white;
     padding: 1rem 2.5rem;
@@ -50,13 +53,15 @@ body {
     transition: all 0.3s ease;
 }
 
-.btn-secondary:hover {
+body:not(.admin-panel) .btn-secondary:hover,
+.public-page .btn-secondary:hover {
     background-color: white;
     color: var(--primary);
 }
 
-/* HEADER GLOBAL */
-header {
+/* HEADER GLOBAL - Solo páginas públicas */
+body:not(.admin-panel) header,
+.public-page header {
     background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
     color: white;
     padding: 1.5rem 0;

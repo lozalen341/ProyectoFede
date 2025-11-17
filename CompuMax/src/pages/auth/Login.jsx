@@ -1,7 +1,7 @@
 import { useState } from "react";
-import styles from "../assets/css/Login.module.css";
+import styles from "../../assets/css/Login.module.css";
 import { Link } from "react-router-dom";
-import AuthBrand from '../components/AuthBrand'
+import AuthBrand from '../../components/AuthBrand'
 
 function Login() {
     return (
@@ -51,9 +51,7 @@ function Login() {
                             />
                         </div>
 
-                        <button type="submit" className="btn-primary">
-                            Iniciar Sesión
-                        </button>
+                        <Link to="/panel" className="btn-primary" >Iniciar Sesión</Link>
 
                         <div className={styles.formFooter}>
                             ¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link>
