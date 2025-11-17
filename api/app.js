@@ -10,11 +10,15 @@ const turnosRoutes = require('./routes/turnosRoutes');
 
 const api = express();
 
-api.use(cors({
-  origin: 'http://localhost:5173',
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "x-api-key"]
-}));
+const corsOptions = {
+  origin: process.env.ORIGIN,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', "OPTIONS"],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key'],
+}
+
+api.disable('x-powered-by')
+api.use(cors(corsOptions));
 
 api.use(express.json());
 api.use(checkApiKey);
