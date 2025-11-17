@@ -1,7 +1,7 @@
 import { useState } from "react";
-import styles from "../assets/css/Register.module.css";
+import styles from "../../assets/css/Register.module.css";
 import { Link } from "react-router-dom";
-import AuthBrand from '../components/AuthBrand'
+import AuthBrand from '../../components/AuthBrand'
 
 
 function Register() {
