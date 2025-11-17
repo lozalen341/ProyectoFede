@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require ("cors");
 require("dotenv").config();
 const checkApiKey = require('./middleware/checkApikey');
 const usersRoutes = require('./routes/userRoutes');
@@ -8,6 +9,15 @@ const turnosRoutes = require('./routes/turnosRoutes');
 // const { specs, swaggerUi } = require('./swagger');
 
 const api = express();
+
+api.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-api-key"]
+}));
+
+api.options("*", cors());
+
 
 api.use(express.json());
 api.use(checkApiKey);

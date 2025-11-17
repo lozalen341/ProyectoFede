@@ -5,7 +5,7 @@ const AuthMiddleware = require('../middleware/authmiddleware')
 
 /**
  * @swagger
- * /api/users/register:
+ * /users/register:
  *   post:
  *     summary: Registrar un nuevo usuario
  *     tags: [Usuarios]
@@ -64,7 +64,7 @@ router.post('/register', UsersController.createUser);
 
 /**
  * @swagger
- * /api/users/login:
+ * /users/login:
  *   post:
  *     summary: Iniciar sesión
  *     tags: [Usuarios]
@@ -123,7 +123,7 @@ router.post('/login', UsersController.login);
 
 /**
  * @swagger
- * /api/users/getall:
+ * /users/getall:
  *   get:
  *     summary: Obtener todos los usuarios
  *     tags: [Usuarios]
@@ -151,7 +151,7 @@ router.get('/getall', UsersController.getAllUsers);
 
 /**
  * @swagger
- * /api/users/getById/{id}:
+ * /users/getById/{id}:
  *   get:
  *     summary: Obtener usuario por ID
  *     tags: [Usuarios]
@@ -183,7 +183,7 @@ router.get('/getById/:id', UsersController.getById);
 
 /**
  * @swagger
- * /api/users/update/{id}:
+ * /users/update/{id}:
  *   put:
  *     summary: Actualizar datos de usuario
  *     tags: [Usuarios]
@@ -229,7 +229,7 @@ router.put('/update/:id', UsersController.updateUser);
 
 /**
  * @swagger
- * /api/users/changePsw/{id}:
+ * /users/changePsw/{id}:
  *   put:
  *     summary: Cambiar contraseña de usuario
  *     tags: [Usuarios]
@@ -284,7 +284,7 @@ router.put('/changePsw/:id', UsersController.changePsw);
 
 /**
  * @swagger
- * /api/users/delete/{id}:
+ * /users/delete/{id}:
  *   delete:
  *     summary: Eliminar usuario
  *     tags: [Usuarios]
@@ -307,7 +307,7 @@ router.delete('/delete/:id', UsersController.deleteUser);
 
 /**
  * @swagger
- * /api/users/auth:
+ * /users/auth:
  *   get:
  *     summary: Verificar autenticación del usuario
  *     tags: [Usuarios]
