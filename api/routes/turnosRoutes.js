@@ -4,7 +4,7 @@ const TurnosController = require('../controllers/turnosController')
 
 /**
  * @swagger
- * /api/turnos/getall:
+ * /turnos/getall:
  *   get:
  *     summary: Obtener todos los turnos
  *     tags: [Turnos]
@@ -36,7 +36,7 @@ router.get('/getall', TurnosController.getAllTurnos)
 
 /**
  * @swagger
- * /api/turnos/getById/{id_user}:
+ * /turnos/getById/{id_user}:
  *   get:
  *     summary: Obtener turnos por ID de usuario
  *     tags: [Turnos]
@@ -72,7 +72,7 @@ router.get('/getById/:id_user', TurnosController.getAllById)
 
 /**
  * @swagger
- * /api/turnos/create:
+ * /turnos/create:
  *   post:
  *     summary: Crear un nuevo turno
  *     tags: [Turnos]
@@ -138,7 +138,7 @@ router.post('/create', TurnosController.createTurno)
 
 /**
  * @swagger
- * /api/turnos/update/{id}:
+ * /turnos/update/{id}:
  *   put:
  *     summary: Actualizar un turno existente
  *     tags: [Turnos]
@@ -197,7 +197,7 @@ router.put('/update/:id', TurnosController.updateTurno)
 
 /**
  * @swagger
- * /api/turnos/delete/{id_ticket}:
+ * /turnos/delete/{id_ticket}:
  *   delete:
  *     summary: Eliminar un turno
  *     tags: [Turnos]
