@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import AuthBrand from '../../components/AuthBrand';
 
 function Register() {
+    const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("");
+
     const [name, setName] = useState("");
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [type, setType] = useState("user"); // default user
+    const [type] = useState("user"); // default user
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -23,15 +26,24 @@ function Register() {
                 },
                 body: JSON.stringify({ name, lastname, email, password, type })
             });
+            const data = await res.json();
 
-            if (!res.ok) {
-                const text = await res.text(); // recibís el HTML de error
-                throw new Error(`Error ${res.status}: ${text}`);
+            //usuario creado
+            if (res.status == 201) {
+                setMessageType("success");
+                setMessage(data.message || "Usuario registrado correctamente")
             }
 
-            const result = await res.json();
-            console.log(result);
+            //email ya registrado
+            if (res.status == 409) {
+                setMessageType("error");
+                setMessage(data.error || "El email ya esta registrado");
+            }
 
+            if (res.status == 400 || res.status == 401 || res.status == 500) {
+                setMessageType("error");
+                setMessage(data.error || "Error en el registro");
+            }
         } catch (error) {
             console.log("Error en el registro: ", error);
         }
@@ -50,6 +62,23 @@ function Register() {
                 <div className={styles.authForm}>
                     <h2 className={styles.formTitle}>Crear cuenta</h2>
                     <p className={styles.formSubtitle}>Completa tus datos para comenzar</p>
+
+                    {/* ---------- Mensaje ----------- */}
+                    {message && (
+                        <div
+                            style={{
+                                backgroundColor: messageType === "success" ? "#4caf50" : "#f44336",
+                                color: "white",
+                                padding: "10px",
+                                borderRadius: "6px",
+                                marginBottom: "15px",
+                                textAlign: "center",
+                                fontWeight: "bold"
+                            }}
+                        >
+                            {message}
+                        </div>
+                    )}
 
                     <form onSubmit={handleRegister}>
                         <div className={styles.formRow}>
@@ -105,19 +134,6 @@ function Register() {
                                 required
                             />
                             <p className={styles.formHelper}>Mínimo 8 caracteres</p>
-                        </div>
-
-                        <div className={styles.formGroup}>
-                            <label className={styles.formLabel} htmlFor="type">Tipo de usuario</label>
-                            <select
-                                id="type"
-                                className={styles.formInput}
-                                value={type}
-                                onChange={(e) => setType(e.target.value)}
-                            >
-                                <option value="user">Usuario</option>
-                                <option value="admin">Administrador</option>
-                            </select>
                         </div>
 
                         <button type="submit" className="btn-primary">Crear Cuenta</button>
