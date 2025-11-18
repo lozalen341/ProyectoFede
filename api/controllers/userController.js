@@ -255,7 +255,7 @@ exports.login = async (req, res) => {
         );
 
         res.json({ 
-            message: "Login exitoso", 
+            message: "Se inicio sesion correctamente correctamente", 
             token, 
             user: { id: user.id_user, email: user.email, type: user.type }
         });

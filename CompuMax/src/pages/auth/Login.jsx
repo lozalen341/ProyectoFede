@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../../assets/css/Login.module.css";
 import { Link } from "react-router-dom";
 import AuthBrand from '../../components/AuthBrand'
 
 function Login() {
+    const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("");
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const naviGate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -21,9 +27,23 @@ function Login() {
                 },
                 body: JSON.stringify({ email, password })
             });
-            const result = await res.json();
-            console.log(res.status);
-            console.log(result.error);
+            const data = await res.json();
+
+            if(res.status == 200){
+                setMessageType("success");
+                setMessage(data.message || "Se inicio sesion correctamente correctamente");
+
+                setTimeout(()=>{
+                    naviGate("/admin/turnos");
+                }, "1500")
+                
+            }
+            if(res.status == 401){
+                setMessageType("error");
+                setMessage(data.error || "El email o la contraseña son incorrectos");
+            }
+
+
         } catch (error) {
             console.log("Error en el login: ", error)
         }
@@ -48,6 +68,23 @@ function Login() {
                     <p className={styles.formSubtitle}>
                         Ingresa tus datos para acceder a tu cuenta
                     </p>
+
+                    {/* ---------- Mensaje ----------- */}
+                    {message && (
+                        <div
+                            style={{
+                                backgroundColor: messageType === "success" ? "#4caf50" : "#f44336",
+                                color: "white",
+                                padding: "10px",
+                                borderRadius: "6px",
+                                marginBottom: "15px",
+                                textAlign: "center",
+                                fontWeight: "bold"
+                            }}
+                        >
+                            {message}
+                        </div>
+                    )}
 
                     <form onSubmit={handleLogin}>
                         <div className={styles.formGroup}>
