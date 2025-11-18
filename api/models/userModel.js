@@ -17,6 +17,11 @@ exports.getById = async (id_user) => {
     return rows;
 };
 
+exports.getByEmail = async (email) => {
+    const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
+    return rows[0];
+};
+
 exports.updateUser = async (id, datos) => {
     const campos = []
     const params = []

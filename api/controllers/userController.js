@@ -28,7 +28,7 @@ exports.createUser = async (req, res) => {
         }
 
         // verificar si el email ya existe
-        const existingUser = await Users.getUserByEmail(email);
+        const existingUser = await Users.getByEmail(email);
         if (existingUser) {
             return res.status(409).json({ error: "El correo ya está registrado" });
         }
