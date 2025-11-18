@@ -5,7 +5,7 @@ const AuthMiddleware = require('../middleware/authmiddleware')
 
 /**
  * @swagger
- * /users/register:
+ * /user/register:
  *   post:
  *     summary: Registrar un nuevo usuario
  *     tags: [Usuarios]
