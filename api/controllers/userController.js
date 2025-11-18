@@ -22,6 +22,17 @@ exports.createUser = async (req, res) => {
     try {
         let { name, lastname, email, type, password } = req.body;
 
+        // validacion basica
+        if (!name || !lastname || !email || !password || !type) {
+            return res.status(400).json({ error: "Faltan datos obligatorios" });
+        }
+
+        // verificar si el email ya existe
+        const existingUser = await Users.getByEmail(email);
+        if (existingUser) {
+            return res.status(409).json({ error: "El correo ya está registrado" });
+        }
+
         // Convertir el tipo de usuario a formato numérico
         if (type === "user") {
             type = 1;
@@ -44,9 +55,16 @@ exports.createUser = async (req, res) => {
             hashedPassword
         );
 
-        res.json({ ok: true, user: create });
+        return res.status(201).json({
+            ok: true,
+            message: "Usuario creado correctamente",
+            user: create
+        });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.log("Error en createUser:", error);
+        return res.status(500).json({
+            error: "Error interno del servidor"
+        });
     }
 };
 
@@ -212,7 +230,7 @@ exports.login = async (req, res) => {
 
         // Validar que se enviaron email y contraseña
         if (!email || !password) {
-            return res.status(400).json({ error: "Es necesario el email y la contraseña" });
+            return res.status(401).json({ error: "Es necesario el email y la contraseña" });
         }
 
         // Buscar usuario por email
