@@ -22,7 +22,8 @@ function Login() {
                 body: JSON.stringify({ email, password })
             });
             const result = await res.json();
-            console.log(result);
+            console.log(res.status);
+            console.log(result.error);
         } catch (error) {
             console.log("Error en el login: ", error)
         }
@@ -79,9 +80,7 @@ function Login() {
                             />
                         </div>
 
-                        <button type="submit">
-                            Iniciar Sesión
-                        </button>
+                        <button type="submit" className="btn-primary">Iniciar Sesión</button>
 
                         <div className={styles.formFooter}>
                             ¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link>
