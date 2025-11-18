@@ -2,6 +2,7 @@ const Users = require("../models/userModel");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+
 /**
  * Crea un nuevo usuario en el sistema
  * @async
@@ -228,6 +229,7 @@ exports.login = async (req, res) => {
         }
 
         // Generar token JWT
+        require('dotenv').config();
         const token = jwt.sign(
             { id: user.id_user, email: user.email, type: user.type },
             process.env.JWT_SECRET,

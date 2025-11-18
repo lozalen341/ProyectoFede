@@ -48,7 +48,7 @@ function Login() {
                         Ingresa tus datos para acceder a tu cuenta
                     </p>
 
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <div className={styles.formGroup}>
                             <label className={styles.formLabel} htmlFor="email">
                                 Correo electrónico
@@ -58,6 +58,8 @@ function Login() {
                                 id="email"
                                 className={styles.formInput}
                                 placeholder="tu@email.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
                         </div>
@@ -71,19 +73,21 @@ function Login() {
                                 id="password"
                                 className={styles.formInput}
                                 placeholder="••••••••"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
                         </div>
 
-                        <button type="button" onClick={handleLogin}>
+                        <button type="submit">
                             Iniciar Sesión
                         </button>
-
 
                         <div className={styles.formFooter}>
                             ¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
